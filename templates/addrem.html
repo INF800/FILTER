@@ -4,7 +4,7 @@
 
 <style>
 	label {
-		font-size: 11px;
+		font-size:11px;
 	}
 </style>
 
@@ -30,7 +30,7 @@
     
     <div class="six columns">
       <label>Current Status</label>
-      <select class="u-full-width" name="cur_status" multiple="">
+      <select class="u-full-width" name="cur_status">
         <option value="Working">Working</option>
         <option value="Student">Student</option>
       </select>
@@ -43,21 +43,84 @@
     </div>
   </div>
   
+  <div class="row">
+  <div class="twelve columns"
   <label>Bio</label>
   <textarea class="u-full-width" placeholder="Drag lower left corner to expand text box..." name="bio"></textarea>
+  </div>
+  </div>
   
   
   <!-- SKILLS -->
   <h5>Skills</h5>
   
-  <label>Programming Languages <br />(select multiple)</label>
+  <div class="row">
+  <div class="twelve columns">
+  <label>Programming Languages</label>
   <select class="u-full-width" name="prog_langs" multiple>
       <option value="Python">Python</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Java">Java</option>
       <option value="C++">C++</option>
       <option value="C">C</option>
-      <option value="Javascript">Javascript</option>
+      <option value="Swift">Swift</option>
   </select>
   
+  <label>Advanced Level of Proficiency</label>
+  <select class="u-full-width" name="adv_skills" multiple>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+  </select>
+  
+  <label>Intermediate Level of Proficiency</label>
+  <select class="u-full-width" name="med_skills" multiple>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+  </select>
+  
+  <label>Beginner</label>
+  <select class="u-full-width" name="med_skills" multiple>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+  </select>
+  
+  <label>Tools or Frameworks of choice</label>
+  <input class="u-full-width" type="text" name="tools_fw" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
+  </div>
+  </div>
   
   <!-- SOCIAL -->
   <h5>Social</h5>
@@ -81,10 +144,20 @@
   	</div>
   	
   	<div class="eight columns">
-  		<label>Email</label>
+  		<label>Email (will be needed to permanently remove your entry)</label>
       <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" name="linkedin_url">
   	</div>
 
+  </div>
+  
+  <br />
+  <br />
+  
+  <div class="row">
+  <div class="twelve columns">
+  <label>Create your secret key (will be needed to permanently remove your entry)</label>
+  <input class="u-full-width" type="text" placeholder="secret key (strong and easy to remeber)">
+  </div>
   </div>
   
   <button type="submit">Submit</button>
@@ -95,19 +168,182 @@
 
 
 
-
+<!-- DELETE FORM -->
 <div id="remove-form" style="display: none; text-align: center; margin-top: 25px">
 	<h4>
-		Leave <b>Filter</b>
+		Permanently remove details from <b>Filter</b>
 	</h4>
+	
+	<form>
+		<label>Email</label>
+		<input type="email" name="email">
+		<label>Secret Key</label>
+		<input type="text" name="secret_key">
+		<br />
+		<button type="submit">Remove</button>
+	</form>
 </div>
 
 
 
-<div id="update-form" style="display: none; text-align: center; margin-top: 25px">
+
+<!-- UPDATE FORM -->
+<div id="update-form" style="display: none; text-align: center; margin-top: 25px; margin-right: auto; margin-left:auto; width: 70%">
 	<h4>
 		Update Existing Entry
 	</h4>
+	
+	<form>
+	<p>
+		Note: For successful updation <i>secret key</i> and <i>email address</i> should match.
+	</p>
+	
+	<!-- PERSONAL -->
+	<H5> Personal </H5>
+  <div class="row">
+    <div class="six columns">
+      <label>Full Name</label>
+      <input class="u-full-width" type="text" placeholder="John Doe" name="full_name">
+      
+      <label>Preferred Name</label>
+      <input class="u-full-width" type="text" placeholder="J0hn1" name="nick_name">
+    </div>
+    
+    <div class="six columns">
+      <label>Current Status</label>
+      <select class="u-full-width" name="cur_status">
+        <option value="Working">Working</option>
+        <option value="Student">Student</option>
+      </select>
+      
+      <label>Location</label>
+      <select class="u-full-width" name="cur_loc">
+        <option value="Option 1">Chennai</option>
+        <option value="Option 2">Bangalore</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="row">
+  <div class="twelve columns">
+  <label>Bio</label>
+  <textarea class="u-full-width" placeholder="Drag lower left corner to expand text box..." name="bio"></textarea>
+  </div>
+  </div>
+  
+  
+  <!-- SKILLS -->
+  <h5>Skills</h5>
+  
+  <div class="rows">
+  <div class="twelve columns">
+  <label>Programming Languages</label>
+  <select class="u-full-width" name="prog_langs" multiple>
+      <option value="Python">Python</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Java">Java</option>
+      <option value="C++">C++</option>
+      <option value="C">C</option>
+      <option value="Swift">Swift</option>
+  </select>
+  
+  <label>Advanced Level of Proficiency</label>
+  <select class="u-full-width" name="adv_skills" multiple>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+  </select>
+  
+  <label>Intermediate Level of Proficiency</label>
+  <select class="u-full-width" name="med_skills" multiple>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+  </select>
+  
+  <label>Beginner</label>
+  <select class="u-full-width" name="med_skills" multiple>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+  </select>
+  
+  <label>Tools or Frameworks of choice</label>
+  <input class="u-full-width" type="text" name="tools_fw" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
+  </div>
+  </div>
+  
+  <!-- SOCIAL -->
+  <h5>Social</h5>
+  <div class="row">
+  	<div class="four columns">
+      <label>LinkedIn</label>
+      <input class="u-full-width" type="text" placeholder="Profile URL" name="linkedin_url">
+      
+      <label>WhatsApp</label>
+      <input class="u-full-width" type="number" placeholder="Contact Number" name="whatsapp_num">
+  	</div>
+  	
+  	<div class="four columns">
+      <label>Twitter</label>
+      <input class="u-full-width" type="text" placeholder="Profile URL" name="twitter_url">
+  	</div>
+  	
+  	<div class="four columns">
+      <label>GitHub</label>
+      <input class="u-full-width" type="text" placeholder="Profile URL" name="github_url">
+  	</div>
+  	
+  	<div class="eight columns">
+  		<label>Email (should match email address provided before)</label>
+      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" name="linkedin_url">
+  	</div>
+
+  </div>
+  
+  <br />
+  <br />
+  
+  <div class="row">
+  <div class="twelve columns">
+  <label>Create your secret key (use the same secret key entered while entering details first time)</label>
+  <input class="u-full-width" type="text" placeholder="secret key">
+  </div>
+  </div>
+  
+  <button type="submit">Submit</button>
+  
+  </form>
 </div>
 
 
