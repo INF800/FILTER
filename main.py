@@ -85,6 +85,20 @@ class MemberRequest(BaseModel):
 # routes and related funcs
 # ----------------------------------------
 # ----------------------------------------
+@app.get("/")
+def home(request: Request):
+	"""
+	dashboard / add+remove / filter
+	"""
+	
+	context = {
+		"request": request
+	}
+	
+	return templates.TemplateResponse("home.html", context)
+
+
+
 @app.get("/api/filter")
 def filter(request: Request):
 	"""
