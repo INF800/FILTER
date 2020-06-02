@@ -99,26 +99,20 @@ def home(request: Request):
 
 
 
-@app.get("/api/filter")
-def filter(request: Request):
+@app.get("/form")
+def add_or_remove_members(request: Request):
 	"""
-	Display all member details w/ filtering.
+	form to add/remove members
 	"""
-	
-	payload = None
-	
 	context = {
-		"request": request,
-		"payload": payload
-		
+		"request": request
 	}
+	return templates.TemplateResponse("addrem.html", context)
 	
-	# if template or json
-	return templates.TemplateResponse("filter.html", context)
+	
+	
 
-
-
-@app.get("api/dashboard")
+@app.get("/api/dashboard")
 def dashboard(request: Request):
 	"""
 	Display summary details of members
@@ -136,6 +130,26 @@ def dashboard(request: Request):
 
 
 
+@app.get("/api/filter")
+def filter(request: Request):
+	"""
+	Explore:
+	Display all member details w/ filtering.
+	"""
+	
+	payload = None
+	
+	context = {
+		"request": request,
+		"payload": payload
+		
+	}
+	
+	# if template or json
+	return templates.TemplateResponse("filter.html", context)
+
+
+
 @app.post("/api/member")
 def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	"""
@@ -148,8 +162,8 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	
 	db.add(mmbr)
 	db.commit()
-		
-	return {"status": "ok"}
+	
+	return None
 	
 
 
