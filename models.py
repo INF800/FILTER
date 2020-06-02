@@ -9,7 +9,7 @@ class Member(Base):
 	id :pk
 	nick_name: (str)short name
 	full_name: (str)complete name
-	professional: (bool) working/student
+	cur_status: (bool) 1-working / 0-student
 	bio: (text)
 	join_date: (datetime) timestamp cur
 	
@@ -34,7 +34,7 @@ class Member(Base):
 	id              = Column(Integer, primary_key=True, index=True)
 	nick_name       = Column(String)
 	full_name       = Column(String, index=True, nullable=False)
-	emp_role        = Column(Boolean)
+	cur_status      = Column(Boolean)
 	bio             = Column(Text)
 	portfolio       = Column(String)
 	join_date       = Column(DateTime, default=datetime.datetime.utcnow)
@@ -47,7 +47,6 @@ class Member(Base):
 	github_uname    = Column(String)
 	
 	# coma separated
-	interests         = Column(String)
 	prog_langs        = Column(Text)
 	adv_skills        = Column(Text)
 	med_skills        = Column(Text)

@@ -59,9 +59,9 @@ class MemberRequest(BaseModel):
 	id              : str
 	nick_name       : str
 	full_name       : str
-	emp_role        : str
+	cur_status      : bool
 	bio             : str
-	portfolio       : str
+	link2self       : str
 	
 	community       : str
 	cur_city				: str
@@ -71,13 +71,12 @@ class MemberRequest(BaseModel):
 	github_uname    : str
 	
 	# coma separated
-	interests       : str
 	prog_langs      : str
-	adv_tech        : str
-	med_tech        : str
-	beg_tech        : str
+	adv_skills      : str
+	med_skills      : str
+	beg_skills      : str
 	
-	sec_key         : str
+	secret_key      : str
 
 
 # ----------------------------------------
@@ -157,15 +156,31 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	"""
 		
 	mmbr = Member()
-	mmbr.full_name = mmbr_req.full_name
-	# get all info
-	
+	mmbr.full_name      = mmbr_req.full_name
+	mmbr.nick_name      = mmbr_req.nick_name
+	mmbr.cur_status     = mmbr_req.cur_status
+	mmbr.bio            = mmbr_req.bio
+	mmbr.link2self      = mmbr_req.link2self
+	mmbr.community      = mmbr_req.community
+	mmbr.cur_city       = mmbr_req.cur_city
+	mmbr.twitter_handle = mmbr_req.twitter_handle
+	mmbr.github_uname   = mmbr_req.github_uname
+	mmbr.linkedin_url   = mmbr_req.linkedin_url
+	mmbr.whatsapp_num   = mmbr_req.whatsapp_num
+	mmbr.prog_langs     = mmbr_req.prog_langs
+	mmbr.adv_skills     = mmbr_req.adv_skills
+	mmbr.med_skills     = mmbr_req.med_skills
+	mmbr.beg_skills     = mmbr_req.beg_skills
+	mmbr.secret_key     = mmbr_req.secret_key
+
 	db.add(mmbr)
 	db.commit()
 	
 	return None
 	
 
+
+# edit based on secret key as well <<<<<
 
 @app.delete("/api/member")
 def remove_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
