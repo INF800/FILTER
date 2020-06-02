@@ -1,2 +1,15 @@
 # FILTER
-For the ♥️ of Open Source
+For the ♥️love of Open Source
+
+```
+
+┏━━━┓┏┓┏┓
+┃┏━━┛┃┣┛┗┓
+┃┗━━┳┫┣┓┏╋━━┳━┓
+┃┏━━╋┫┃┃┃┃┃━┫┏┛
+┃┃╋╋┃┃┗┫┗┫┃━┫┃
+┗┛╋╋┗┻━┻━┻━━┻┛
+
+ What you seek is
+    already seeking you!
+```
