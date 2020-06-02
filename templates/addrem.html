@@ -1,6 +1,86 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>form</h1>
+
+<!-- forms -->
+<div id="add-form" style="display: block; text-align: center; margin-top: 25px; width: 70%; margin-left: auto; margin-right: auto;">
+	<h4>
+		Add Your Details
+	</h4>
+	
+  <div class="row">
+    <div class="six columns">
+      
+      <label>Full Name</label>
+      <input class="u-full-width" type="text" placeholder="John Doe" name="full_name">
+      
+      <label>Preferred Name</label>
+      <input class="u-full-width" type="text" placeholder="J0hn1" name="nick_name">
+      
+    </div>
+    <div class="six columns">
+    	
+      <label>Current Status</label>
+      <select class="u-full-width" name="cur_status">
+        <option value="Option 1">Working</option>
+        <option value="Option 2">Student</option>
+      </select>
+        
+      <label>Location</label>
+      <select class="u-full-width" name="cur_loc">
+        <option value="Option 1">Chennai</option>
+        <option value="Option 2">Bangalore</option>
+      </select>
+      
+    </div>
+  </div>
+	
+</div>
+
+
+
+<div id="remove-form" style="display: none; text-align: center; margin-top: 25px">
+	<h4>
+		Leave <b>Filter</b>
+	</h4>
+</div>
+
+
+
+<div id="update-form" style="display: none; text-align: center; margin-top: 25px">
+	<h4>
+		Update Existing Entry
+	</h4>
+</div>
+
+
+
+<!-- toggle forms -->
+<div style="text-align: center; border-top: 0.6px solid #808080; margin-top: 40px; padding: 20px">
+	<p>
+		Looking for something else?
+	</p>
+	<button class="button-primary" onclick="showAddHideUpdateRemove()">New Entry</button>
+	<button class="button-primary" onclick="showUpdateHideAddRemove()">Update Entry</button>
+	<button class="button-primary" onclick="showRemoveHideAddUpdate()">Remove Entry</button>
+</div>
+
+<script>
+	function showAddHideUpdateRemove(){
+		document.getElementById('update-form').style.display = "none";
+		document.getElementById('add-form').style.display = "block";
+		document.getElementById('remove-form').style.display = "none";
+	}
+	function showUpdateHideAddRemove(){
+		document.getElementById('update-form').style.display = "block";
+		document.getElementById('add-form').style.display = "none";
+		document.getElementById('remove-form').style.display = "none";
+	}
+	function showRemoveHideAddUpdate(){
+		document.getElementById('update-form').style.display = "none";
+		document.getElementById('add-form').style.display = "none";
+		document.getElementById('remove-form').style.display = "block";
+	}
+</script>
 
 {% endblock %}
