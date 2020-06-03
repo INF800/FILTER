@@ -172,10 +172,12 @@
   </div>
   
   <input type="button" onclick="getDataAndPOST()" value="submit">
- 
+  
+  <!--
  <div id="console">
-	
-</div>
+ </div>
+ -->
+ 
 </div>
 
 
@@ -183,7 +185,7 @@
 <script>
 	// post for add FORM
 	// -----------------
-	document.getElementById("console").innerHTML = "my console"
+	// document.getElementById("console").innerHTML = "my console"
 	function getDataAndPOST() {
 		var fullName = document.getElementById("fullName").value
 		var nickName = document.getElementById("nickName").value
@@ -230,7 +232,7 @@
 		var email      = document.getElementById("email").value
 		var secretKey  = document.getElementById("secretKey").value
 		
-		
+		/*
 		document.getElementById("console").innerHTML = `
 			fullName    : ${fullName} ${typeof fullName === 'string'} <br />
 			nickName    : ${nickName} <br />
@@ -250,7 +252,7 @@
 			email         : ${email} <br/>
 			secretKey     : ${secretKey} <br />
 		`;
-		
+		*/
 
 	  //post
 	  axios.post('/api/member', {
