@@ -1,7 +1,29 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Filter</h1>
+<div style="text-align:center">
+	
+	
+<h3>Community Neighbours</h3>
 
 
+<!-- GET Request for filtering -->
+<form style="display: inline">
+	<input type="text" placeholder="Name">
+	<input type="text" placeholder="Skills">
+</form>
+
+
+{% for member in members %}
+<div style="border: 1px solid black; margin-bottom: 10px">
+	<div>
+		Name: {{member.full_name}} <br/>
+		City: {{member.cur_city}}<br/>
+		Bio:  {{member.bio}}<br/>
+		Skills: {{member.adv_skills}}<br/>
+	</div>
+</div>
+{% endfor %}
+
+</div>
 {% endblock %}

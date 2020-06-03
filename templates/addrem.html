@@ -248,6 +248,7 @@
 	  }
 	  ).then(function(response){
 	  	//console.log(response)
+	  	window.location.href = "/";
 	  })
 	}
 
@@ -274,14 +275,16 @@
 <script>
 	// DELETE Request
 	function getDataAndDELETE() {
-		var email = document.getElementById("authEmail").value
-		var secretKey = document.getElementById("authSecretKey").value
+		var email1 = document.getElementById("authEmail").value
+		var secretKey1 = document.getElementById("authSecretKey").value
 		
 		axios.delete("/api/member", {
 			data: {
-				secret_key: secretKey,
-				email     : email
+				secret_key: secretKey1,
+				email     : email1
 			}
+		}).then(response => {
+			window.location.href="/";
 		})
 	}
 </script>
@@ -498,6 +501,9 @@ function getDataAndPATCH() {
 				email      : email,
 				key        : key,
 				val        : val,
+			})
+			.then(function(redponse){
+				window.location.href = "/";
 			});
 			
 	}

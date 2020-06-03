@@ -139,17 +139,18 @@ def dashboard(request: Request):
 
 
 @app.get("/api/filter")
-def filter(request: Request):
+def filter(request: Request, db: Session = Depends(get_db)):
 	"""
 	Explore:
 	Display all member details w/ filtering.
 	"""
 	
-	payload = None
+	mmbr = db.query(Member).all()
 	
+	#payload
 	context = {
 		"request": request,
-		"payload": payload
+		"members": mmbr
 		
 	}
 	

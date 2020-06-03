@@ -54,3 +54,5 @@ class Member(Base):
 	fvt_tools         = Column(String)
 	
 	secret_key      = Column(String, index=True)
+	
+	# make secret_key and email non nullable
