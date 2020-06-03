@@ -163,7 +163,7 @@
   </div>
   </div>
   
-  <button onclick="getDataAndPOST()">Submit</button>
+  <input type="button" onclick="getDataAndPOST()" value="submit">
   
 </div>
 
@@ -234,10 +234,32 @@
 			email         : ${email} <br/>
 			secretKey     : ${secretKey} <br />
 		`
+	
+	  //post
+	  axios.post('/api/member', {
+	  	full_name       : fullName,
+	  	nick_name       : nickName,
+	  	cur_city        : curLoc,
+	  	cur_status      : curStatus,
+	  	bio             : bio,
+	  	prog_langs      : progLangsList.toString(),
+	  	adv_skills      : advSkillsList.toString(),
+	  	med_skills      : medSkillsList.toString(),
+	  	beg_skills      : begSkillsList.toString(),
+	  	fvt_tools       : fvtTools,
+	  	linkedin_url    : linkedinUrl,
+	  	whatsapp_num    : whatsappNum,
+	  	twitter_url     : twitterUrl,
+	  	github_url      : githubUrl,
+	  	email           : email,
+	  	secret_key      : secretKey
+	  	
+	  }).then(function(response){
+	  	console.log(response)
+	  })
+	
+	
 	}
-	
-	//post
-	
 
 </script>
 
