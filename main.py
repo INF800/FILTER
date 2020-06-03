@@ -63,7 +63,7 @@ class MemberRequest(BaseModel):
 	bio             : str
 	twitter_url     : str
 	linkedin_url    : str
-	whatsapp_num    : int
+	whatsapp_num    : str
 	github_url      : str
 	email           : str
 	

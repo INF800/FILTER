@@ -41,7 +41,7 @@ class Member(Base):
 
 	twitter_url     = Column(String)
 	linkedin_url    = Column(String)
-	whatsapp_num    = Column(Integer)
+	whatsapp_num    = Column(String)
 	github_url      = Column(String)
 	email           = Column(String)
 	
