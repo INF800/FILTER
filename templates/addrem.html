@@ -9,44 +9,47 @@
 </style>
 
 <!-- forms [ADD ENTRY] -->
+<!---------------------------------------------->
 <div id="add-form" style="display: block; text-align: center; margin-top: 25px; width: 70%; margin-left: auto; margin-right: auto;">
 
 	<h4>
 		Add Your Details
 	</h4>
 	
-	<form>
+	<p>
+		This release in alpha version. Form validation is not yet added so please enter values carefully.
+	</p>
 		
 	<!-- PERSONAL -->
 	<H5> Personal </H5>
   <div class="row">
     <div class="six columns">
       <label>Full Name</label>
-      <input class="u-full-width" type="text" placeholder="John Doe" name="full_name">
+      <input id="fullName" class="u-full-width" type="text" placeholder="John Doe">
       
       <label>Preferred Name</label>
-      <input class="u-full-width" type="text" placeholder="J0hn1" name="nick_name">
+      <input class="u-full-width" type="text" placeholder="J0hn1" id="nickName">
     </div>
     
     <div class="six columns">
       <label>Current Status</label>
-      <select class="u-full-width" name="cur_status">
+      <select class="u-full-width" id="curStatus">
         <option value="Working">Working</option>
         <option value="Student">Student</option>
       </select>
       
       <label>Location</label>
-      <select class="u-full-width" name="cur_loc">
-        <option value="Option 1">Chennai</option>
-        <option value="Option 2">Bangalore</option>
+      <select class="u-full-width" id="curLoc">
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
       </select>
     </div>
   </div>
   
   <div class="row">
-  <div class="twelve columns"
+  <div class="twelve columns">
   <label>Bio</label>
-  <textarea class="u-full-width" placeholder="Drag lower left corner to expand text box..." name="bio"></textarea>
+  <textarea class="u-full-width" placeholder="Drag lower left corner to expand text box... tell about yourself" id="bio"></textarea>
   </div>
   </div>
   
@@ -57,7 +60,7 @@
   <div class="row">
   <div class="twelve columns">
   <label>Programming Languages</label>
-  <select class="u-full-width" name="prog_langs" multiple>
+  <select class="u-full-width" id="progLangs" multiple>
       <option value="Python">Python</option>
       <option value="Javascript">Javascript</option>
       <option value="Java">Java</option>
@@ -67,7 +70,7 @@
   </select>
   
   <label>Advanced Level of Proficiency</label>
-  <select class="u-full-width" name="adv_skills" multiple>
+  <select class="u-full-width" id="advSkills" multiple>
       <option value="Frontend">Frontend</option>
       <option value="Backend">Backend</option>
       <option value="Full Stack">Full Stack</option>
@@ -84,7 +87,7 @@
   </select>
   
   <label>Intermediate Level of Proficiency</label>
-  <select class="u-full-width" name="med_skills" multiple>
+  <select class="u-full-width" id="medSkills" multiple>
       <option value="Frontend">Frontend</option>
       <option value="Backend">Backend</option>
       <option value="Full Stack">Full Stack</option>
@@ -101,7 +104,7 @@
   </select>
   
   <label>Beginner</label>
-  <select class="u-full-width" name="med_skills" multiple>
+  <select class="u-full-width" id="begSkills" multiple>
       <option value="Frontend">Frontend</option>
       <option value="Backend">Backend</option>
       <option value="Full Stack">Full Stack</option>
@@ -118,7 +121,7 @@
   </select>
   
   <label>Tools or Frameworks of choice</label>
-  <input class="u-full-width" type="text" name="tools_fw" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
+  <input class="u-full-width" type="text" id="fvtTools" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
   </div>
   </div>
   
@@ -127,25 +130,25 @@
   <div class="row">
   	<div class="four columns">
       <label>LinkedIn</label>
-      <input class="u-full-width" type="text" placeholder="Profile URL" name="linkedin_url">
+      <input class="u-full-width" type="text" placeholder="Profile URL" id="linkedinUrl">
       
       <label>WhatsApp</label>
-      <input class="u-full-width" type="number" placeholder="Contact Number" name="whatsapp_num">
+      <input class="u-full-width" type="number" step="1" placeholder="Contact Number" id="whatsappNum">
   	</div>
   	
   	<div class="four columns">
       <label>Twitter</label>
-      <input class="u-full-width" type="text" placeholder="Profile URL" name="twitter_url">
+      <input class="u-full-width" type="text" placeholder="Profile URL" id="twitterUrl">
   	</div>
   	
   	<div class="four columns">
       <label>GitHub</label>
-      <input class="u-full-width" type="text" placeholder="Profile URL" name="github_url">
+      <input class="u-full-width" type="text" placeholder="Profile URL" id="githubUrl">
   	</div>
   	
   	<div class="eight columns">
   		<label>Email (will be needed to permanently remove your entry)</label>
-      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" name="linkedin_url">
+      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="email">
   	</div>
 
   </div>
@@ -156,19 +159,93 @@
   <div class="row">
   <div class="twelve columns">
   <label>Create your secret key (will be needed to permanently remove your entry)</label>
-  <input class="u-full-width" type="text" placeholder="secret key (strong and easy to remeber)">
+  <input class="u-full-width" type="text" placeholder="secret key (strong and easy to remeber)" id="secretKey">
   </div>
   </div>
   
-  <button type="submit">Submit</button>
+  <button onclick="getDataAndPOST()">Submit</button>
   
-  </form>
 </div>
+
+<div id="console">
+	
+</div>
+
+<script>
+	// post for add FORM
+	// -----------------
+	document.getElementById("console").innerHTML = "my console"
+	function getDataAndPOST() {
+		var fullName = document.getElementById("fullName").value
+		var nickName = document.getElementById("nickName").value
+		var curLoc   = document.getElementById("curLoc").value
+		var curStatus= document.getElementById("curStatus").value
+		var bio      = document.getElementById("bio").value
+		
+		var progLangsList = []
+		var multiSelect   = document.getElementById("progLangs")
+		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+			progLangsList.push(multiSelect.selectedOptions[i].value)
+		}
+		
+		var advSkillsList = []
+		var multiSelect   = document.getElementById("advSkills")
+		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+			advSkillsList.push(multiSelect.selectedOptions[i].value)
+		}
+		
+		var medSkillsList = []
+		var multiSelect   = document.getElementById("medSkills")
+		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+			medSkillsList.push(multiSelect.selectedOptions[i].value)
+		}
+		
+		var begSkillsList = []
+		var multiSelect   = document.getElementById("begSkills")
+		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+			begSkillsList.push(multiSelect.selectedOptions[i].value)
+		}
+		
+		
+		var fvtTools   = document.getElementById("fvtTools").value.replace(/\s/g, "").toLowerCase()
+		
+		var linkedinUrl= document.getElementById("linkedinUrl").value
+		var whatsappNum= document.getElementById("whatsappNum").value
+		var twitterUrl = document.getElementById("twitterUrl").value
+		var githubUrl  = document.getElementById("githubUrl").value
+		var email      = document.getElementById("email").value
+		var secretKey  = document.getElementById("secretKey").value
+		
+		document.getElementById("console").innerHTML = `
+			fullName    : ${fullName} <br />
+			nickName    : ${nickName} <br />
+			curLoc      : ${curLoc}   <br />
+			curStatus   : ${curStatus} <br />
+			bio         : ${bio}  <br />
+			progLangsList : ${progLangsList}  <br />
+			advSkillsList : ${advSkillsList}  <br />
+			medSkillsList : ${medSkillsList}  <br />
+			begSkillsList : ${begSkillsList}<br />
+			fvtTools      : ${fvtTools}  <br />
+			linkedinUrl   : ${linkedinUrl} <br/>
+			whatsappNum   : ${whatsappNum} <br/>
+			twitterUrl    : ${twitterUrl} <br/>
+			githubUrl     : ${githubUrl} <br/>
+			email         : ${email} <br/>
+			secretKey     : ${secretKey} <br />
+		`
+	}
+	
+	//post
+	
+
+</script>
 
 
 
 
 <!-- DELETE FORM -->
+<!---------------------------------------------->
 <div id="remove-form" style="display: none; text-align: center; margin-top: 25px">
 	<h4>
 		Permanently remove details from <b>Filter</b>
@@ -189,6 +266,7 @@
 
 
 <!-- UPDATE FORM -->
+<!---------------------------------------------->
 <div id="update-form" style="display: none; text-align: center; margin-top: 25px; margin-right: auto; margin-left:auto; width: 70%">
 	<h4>
 		Update Existing Entry
