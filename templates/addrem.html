@@ -292,13 +292,28 @@
 	</h4>
 	
 		<label>Email</label>
-		<input type="email" name="email">
+		<input type="email" id="authEmail">
 		<label>Secret Key</label>
-		<input type="text" name="secret_key">
+		<input type="text" id="authSecretKey">
 		<br />
-		<input type="button" value="Remove">
-		<input type="button" vakue="Update">
+		<input type="button" onclick="getDataAndDELETE()" value="Remove">
+		<input type="button" value="Update">
 </div>
+
+<script>
+	// DELETE Request
+	function getDataAndDELETE() {
+		var email = document.getElementById("authEmail").value
+		var secretKey = document.getElementById("authSecretKey").value
+		
+		axios.delete("/api/member", {
+			data: {
+				secret_key: secretKey,
+				email     : email
+			}
+		})
+	}
+</script>
 
 
 <!-- Update FORM -->

@@ -78,6 +78,12 @@ class MemberRequest(BaseModel):
 	secret_key      : str
 
 
+class authMemberRequest(BaseModel):
+	secret_key : str
+	email      : str
+	
+	
+
 # ----------------------------------------
 # ----------------------------------------
 # routes and related funcs
@@ -183,12 +189,24 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 # edit based on secret key as well <<<<<
 
 @app.delete("/api/member")
-def remove_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
+def remove_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 	"""
 	Remove entry wrt `secretkey` & `full name` from db
 	"""
 	
-	return None
+	secret_key = mmbr_req.secret_key
+	email      = mmbr_req.email
+	
+	mmbr = db.query(Member).filter(Member.secret_key==secret_key and Member.email==email).first()
+	
+	if mmbr is None:
+		status = "invalid entry"
+	else:
+		db.delete(mmbr)
+		db.commit()
+		status = "success"
+		
+	return {"status": status}
 
 
 
