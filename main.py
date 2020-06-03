@@ -120,10 +120,12 @@ def add_or_remove_members(request: Request):
 	
 	
 
-@app.get("/api/dashboard")
-def dashboard(request: Request):
+@app.get("/api/dashboard/{json_or_app}")
+def dashboard(request: Request, json_or_app="app"):
 	"""
 	Display summary details of members
+	
+	returns either temate or json based on query params
 	"""
 	
 	payload = None
@@ -134,15 +136,20 @@ def dashboard(request: Request):
 	}
 	
 	# if template or json
+	if json_or_app == "json":
+		return {"payload": payload}
 	return templates.TemplateResponse("dashboard.html", context)
 
 
 
-@app.get("/api/filter")
-def filter(request: Request, db: Session = Depends(get_db)):
+@app.get("/api/filter/{json_or_app}")
+def filter(request: Request, json_or_app="app",db: Session = Depends(get_db)):
 	"""
 	Explore:
 	Display all member details w/ filtering.
+	
+	return either html template or json based on 
+	query params
 	"""
 	
 	mmbr = db.query(Member).all()
@@ -151,10 +158,11 @@ def filter(request: Request, db: Session = Depends(get_db)):
 	context = {
 		"request": request,
 		"members": mmbr
-
 	}
 	
 	# template / json
+	if json_or_app == "json":
+		return {"payload": mmbr}
 	return templates.TemplateResponse("filter.html", context)
 
 
