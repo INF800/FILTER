@@ -82,6 +82,10 @@ class authMemberRequest(BaseModel):
 	secret_key : str
 	email      : str
 	
+	#for.updation
+	key        : str = None
+	val        : str = None
+	
 	
 
 # ----------------------------------------
@@ -186,8 +190,6 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	
 
 
-# edit based on secret key as well <<<<<
-
 @app.delete("/api/member")
 def remove_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 	"""
@@ -200,7 +202,7 @@ def remove_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 	mmbr = db.query(Member).filter(Member.secret_key==secret_key and Member.email==email).first()
 	
 	if mmbr is None:
-		status = "invalid entry"
+		status = "secret key or email don't match"
 	else:
 		db.delete(mmbr)
 		db.commit()
@@ -209,7 +211,68 @@ def remove_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 	return {"status": status}
 
 
-
+	
+@app.patch("/api/member")
+def update_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
+	"""
+	alter values for an entry after verification
+	"""
+	
+	secret_key = mmbr_req.secret_key
+	email = mmbr_req.email
+	mmbr = db.query(Member).filter(Member.secret_key==secret_key and Member.email==email).first()
+	
+	if mmbr is None:
+		status = "secret key or email don't match"
+	else:
+		
+		# take key where we need to update and value to 
+		# which we have to update
+		key = mmbr_req.key
+		val = mmbr_req.val
+		
+		#mmbr.key = val (key is str)
+		if key == "nick_name":
+			mmbr.nick_name = val
+		if key == "full_name":
+			mmbr.full_name = val
+		if key == "cur_status":
+			mmbr.cur_status = val
+		if key == "cur_city":
+			mmbr.cur_city = val
+		if key == "bio":
+			mmbr.bio = val
+		if key == "twitter_url":
+			mmbr.twitter_url = val
+		if key == "linkedin_url":
+			mmbr.linkedin_url = val
+		if key == "whatsapp_num":
+			mmbr.whatsapp_num = val
+		if key == "github_url":
+			mmbr.github_url = val
+		if key == "email":
+			mmbr.email = email
+		if key == "communities":
+			mmbr.communities = val
+		if key == "prog_langs":
+			mmbr.prog_langs = val
+		if key == "adv_skills":
+			mmbr.adv_skills = val
+		if key == "med_skills":
+			mmbr.med_skills = val
+		if key == "beg_skills":
+			mmbr.beg_skills = val
+		if key == "fvt_tools":
+			mmbr.fvt_tools = val
+		if key == "secret_key":
+			mmbr.secret_key = val
+		
+		
+		db.add(mmbr)
+		db.commit()
+		status = "success!"
+		
+	return {"status": status}
 # ----------------------------------------
 # end
 # ----------------------------------------
