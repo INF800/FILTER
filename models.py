@@ -9,7 +9,7 @@ class Member(Base):
 	id :pk
 	nick_name: (str)short name
 	full_name: (str)complete name
-	cur_status: (bool) 1-working / 0-student
+	cur_status: (str)
 	bio: (text)
 	join_date: (datetime) timestamp cur
 	
@@ -34,22 +34,23 @@ class Member(Base):
 	id              = Column(Integer, primary_key=True, index=True)
 	nick_name       = Column(String)
 	full_name       = Column(String, index=True, nullable=False)
-	cur_status      = Column(Boolean)
+	cur_city        = Column(String)
+	cur_status      = Column(String)
 	bio             = Column(Text)
-	portfolio       = Column(String)
 	join_date       = Column(DateTime, default=datetime.datetime.utcnow)
-	
-	community       = Column(String, nullable=False)
-	cur_city				= Column(String)
-	twitter_handle  = Column(String)
+
+	twitter_url     = Column(String)
 	linkedin_url    = Column(String)
-	whatsapp_num    = Column(String, nullable=True)
-	github_uname    = Column(String)
+	whatsapp_num    = Column(Integer)
+	github_url      = Column(String)
+	email           = Column(String)
 	
 	# coma separated
 	prog_langs        = Column(Text)
 	adv_skills        = Column(Text)
 	med_skills        = Column(Text)
 	beg_skills        = Column(Text)
+	communities       = Column(String)
+	fvt_tools         = Column(String)
 	
 	secret_key      = Column(String, index=True)

@@ -122,6 +122,14 @@
   
   <label>Tools or Frameworks of choice</label>
   <input class="u-full-width" type="text" id="fvtTools" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
+  
+  <label>Dev Communities you are part of</label>
+  <select class="u-full-width" id="communities" multiple>
+  	<option value="ChennaiJS">ChennaiJS</option>
+  	<option value="TFJS">TFJS Dev</option>
+  	<option value="Dev Army">Dev Army</option>
+  </select>
+  
   </div>
   </div>
   
@@ -206,6 +214,11 @@
 			begSkillsList.push(multiSelect.selectedOptions[i].value)
 		}
 		
+		var communitiesList = []
+		var multiSelect   = document.getElementById("communities")
+		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+			communitiesList.push(multiSelect.selectedOptions[i].value)
+		}
 		
 		var fvtTools   = document.getElementById("fvtTools").value.replace(/\s/g, "").toLowerCase()
 		
@@ -217,15 +230,16 @@
 		var secretKey  = document.getElementById("secretKey").value
 		
 		document.getElementById("console").innerHTML = `
-			fullName    : ${fullName} <br />
+			fullName    : ${fullName} ${typeof fullName === 'string'} <br />
 			nickName    : ${nickName} <br />
 			curLoc      : ${curLoc}   <br />
 			curStatus   : ${curStatus} <br />
 			bio         : ${bio}  <br />
-			progLangsList : ${progLangsList}  <br />
+			progLangsList : ${progLangsList}  ${typeof progLangsList.toString() === 'string'} <br />
 			advSkillsList : ${advSkillsList}  <br />
 			medSkillsList : ${medSkillsList}  <br />
 			begSkillsList : ${begSkillsList}<br />
+			communitiesList :${communitiesList} <br/>
 			fvtTools      : ${fvtTools}  <br />
 			linkedinUrl   : ${linkedinUrl} <br/>
 			whatsappNum   : ${whatsappNum} <br/>
@@ -233,8 +247,8 @@
 			githubUrl     : ${githubUrl} <br/>
 			email         : ${email} <br/>
 			secretKey     : ${secretKey} <br />
-		`
-	
+		`;
+
 	  //post
 	  axios.post('/api/member', {
 	  	full_name       : fullName,
@@ -246,6 +260,7 @@
 	  	adv_skills      : advSkillsList.toString(),
 	  	med_skills      : medSkillsList.toString(),
 	  	beg_skills      : begSkillsList.toString(),
+	  	communities     : communitiesList.toString(),
 	  	fvt_tools       : fvtTools,
 	  	linkedin_url    : linkedinUrl,
 	  	whatsapp_num    : whatsappNum,
@@ -253,12 +268,10 @@
 	  	github_url      : githubUrl,
 	  	email           : email,
 	  	secret_key      : secretKey
-	  	
-	  }).then(function(response){
-	  	console.log(response)
+	  }
+	  ).then(function(response){
+	  	//console.log(response)
 	  })
-	
-	
 	}
 
 </script>

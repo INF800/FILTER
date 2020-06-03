@@ -56,25 +56,24 @@ from fastapi import Request # for get
 from pydantic import BaseModel # for post
 
 class MemberRequest(BaseModel):
-	id              : str
 	nick_name       : str
 	full_name       : str
-	cur_status      : bool
+	cur_status      : str
+	cur_city        : str
 	bio             : str
-	link2self       : str
-	
-	community       : str
-	cur_city				: str
-	twitter_handle  : str
+	twitter_url     : str
 	linkedin_url    : str
-	whatsapp_num    : str	
-	github_uname    : str
+	whatsapp_num    : int
+	github_url      : str
+	email           : str
 	
 	# coma separated
+	communities     : str
 	prog_langs      : str
 	adv_skills      : str
 	med_skills      : str
 	beg_skills      : str
+	fvt_tools       : str
 	
 	secret_key      : str
 
@@ -159,18 +158,19 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	mmbr.full_name      = mmbr_req.full_name
 	mmbr.nick_name      = mmbr_req.nick_name
 	mmbr.cur_status     = mmbr_req.cur_status
-	mmbr.bio            = mmbr_req.bio
-	mmbr.link2self      = mmbr_req.link2self
-	mmbr.community      = mmbr_req.community
 	mmbr.cur_city       = mmbr_req.cur_city
-	mmbr.twitter_handle = mmbr_req.twitter_handle
-	mmbr.github_uname   = mmbr_req.github_uname
+	mmbr.bio            = mmbr_req.bio
+	mmbr.communities    = mmbr_req.communities
+	mmbr.twitter_url    = mmbr_req.twitter_url
+	mmbr.github_url     = mmbr_req.github_url
 	mmbr.linkedin_url   = mmbr_req.linkedin_url
 	mmbr.whatsapp_num   = mmbr_req.whatsapp_num
+	mmbr.email          = mmbr_req.email
 	mmbr.prog_langs     = mmbr_req.prog_langs
 	mmbr.adv_skills     = mmbr_req.adv_skills
 	mmbr.med_skills     = mmbr_req.med_skills
 	mmbr.beg_skills     = mmbr_req.beg_skills
+	mmbr.fvt_tools      = mmbr_req.fvt_tools
 	mmbr.secret_key     = mmbr_req.secret_key
 
 	db.add(mmbr)
