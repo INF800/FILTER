@@ -10,7 +10,7 @@
 
 <!-- forms [ADD ENTRY] -->
 <!---------------------------------------------->
-<div id="add-form" style="display: block; text-align: center; margin-top: 25px; width: 70%; margin-left: auto; margin-right: auto;">
+<div id="add-form" style="display: none; text-align: center; margin-top: 25px; width: 70%; margin-left: auto; margin-right: auto;">
 
 	<h4>
 		Add Your Details
@@ -173,11 +173,6 @@
   
   <input type="button" onclick="getDataAndPOST()" value="submit">
   
-  <!--
- <div id="console">
- </div>
- -->
- 
 </div>
 
 
@@ -231,28 +226,6 @@
 		var githubUrl  = document.getElementById("githubUrl").value
 		var email      = document.getElementById("email").value
 		var secretKey  = document.getElementById("secretKey").value
-		
-		/*
-		document.getElementById("console").innerHTML = `
-			fullName    : ${fullName} ${typeof fullName === 'string'} <br />
-			nickName    : ${nickName} <br />
-			curLoc      : ${curLoc}   <br />
-			curStatus   : ${curStatus} <br />
-			bio         : ${bio}  <br />
-			progLangsList : ${progLangsList}  ${typeof progLangsList.toString() === 'string'} <br />
-			advSkillsList : ${advSkillsList}  <br />
-			medSkillsList : ${medSkillsList}  <br />
-			begSkillsList : ${begSkillsList}<br />
-			communitiesList :${communitiesList} <br/>
-			fvtTools      : ${fvtTools}  <br />
-			linkedinUrl   : ${linkedinUrl} <br/>
-			whatsappNum   : ${whatsappNum} <br/>
-			twitterUrl    : ${twitterUrl} <br/>
-			githubUrl     : ${githubUrl} <br/>
-			email         : ${email} <br/>
-			secretKey     : ${secretKey} <br />
-		`;
-		*/
 
 	  //post
 	  axios.post('/api/member', {
@@ -297,7 +270,6 @@
 		<input type="text" id="authSecretKey">
 		<br />
 		<input type="button" onclick="getDataAndDELETE()" value="Remove">
-		<input type="button" value="Update">
 </div>
 
 <script>
@@ -316,13 +288,177 @@
 </script>
 
 
+
 <!-- Update FORM -->
 <!------------------>
-<div id="update-form" style="display: none; text-align: center; margin-top: 25px">
+<div id="update-form" style="display: block; text-align: center; margin-top: 25px; margin-left: auto; margin-right: auto; width: 70%">
 	<h4>
-		Update your details
+		Update Your Details
 	</h4>
+	
+		<label>Email (required)</label>
+		<input type="email" id="authEmail2">
+		
+		<label>Secret Key (required)</label>
+		<input type="text" id="authSecretKey2">
+		
+		<br />
+		<label id="ftuLabel">Fields to update</label>
+		<select id="ftuOptions" class="u-full-width" multiple id="fieldsToUpdate">
+			<option value="full_name">Full Name</option>
+			<option value="nick_name">Preferred Name</option>
+			<option value="cur_status">Working / Student</option>
+			<option value="cur_city">Curent City</option>
+			<option value="bio">Bio</option>
+			<option value="twitter_url">Twitter URL</option>
+			<option value="linkedin_url">LinkedIn URL</option>
+			<option value="whatsapp_num">WhatsApp Number</option>
+			<option value="github_url">GitHub URL</option>
+			<option value="email">Email</option>
+			<option value="communities">Communities</option>
+			<option value="prog_langs">Prog_langs</option>
+			<option value="adv_skills">Skills - Advanced</option>
+			<option value="med_skills">Skills - Intermediate</option>
+			<option value="beg_skills">Skills - Beginner</option>
+			<option value="fvt_tools">Tools of Choice</option>
+			<option value="secret_key">Secret Key</option>
+		</select>
+		
+		<div id="fields-add">
+			
+		</div>
+		
+		<input id="startUpdating" type="button" onclick="removeAndAdd()" value="Start Updating">
 </div>
+
+
+<script>
+
+function removeAndAdd() {
+
+	// add:
+  // get list of fields
+  var ftuList = []
+  var multiSelect   = document.getElementById("ftuOptions")
+  for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+		ftuList.push(multiSelect.selectedOptions[i].value)
+	}
+	
+	// add label and input / multiselect fields
+	// depending on `field` type
+	var strFields = ["full_name", "nick_name", "bio", "twitter_url", "linkedin_url", "github_url", "whatsapp_num", "email", "fvt_tools", "secret_key"]
+  var optionFields = ["cur_status", "cur_city", "communities", "prog_langs", "adv_skills", "med_skills", "beg_skills"]
+	var singleOptFields = ["cur_status", "cur_city"]
+	for (let i=0; i<ftuList.length; i++) {
+		
+		field_name = ftuList[i]
+		var fieldsAdd = document.getElementById("fields-add")
+		
+		// str fields with onky <labe> and <input>
+		if (strFields.includes(field_name)) {
+			
+			var newLabel = document.createElement('label')
+			newLabel.innerHTML = "Update " + field_name.replace("_", " ")
+			fieldsAdd.appendChild(newLabel)
+			
+			var newInput = document.createElement('input')
+			newInput.type = "text"
+			newInput.id = field_name
+			newInput.classList.add('u-full-width')
+			fieldsAdd.appendChild(newInput)
+			
+			
+		} else if (optionFields.includes(field_name)) {
+			
+			var newLabel = document.createElement('label')
+			newLabel.innerHTML = "Update " + field_name.replace("_", " ")
+			fieldsAdd.appendChild(newLabel)
+			
+			// add multiple/single options
+			var newSelect = document.createElement("select")
+			newSelect.id = field_name
+			newSelect.classList.add('u-full-width')
+			if (!singleOptFields.includes(field_name)) {
+				newSelect.multiple = true
+			}
+			
+			if (field_name === "cur_status"){
+				newSelect.innerHTML = `
+        <option value="Working">Working</option>
+        <option value="Student">Student</option>
+        `
+			}
+			
+			if (field_name == "cur_city") {
+				newSelect.innerHTML = `
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+				`
+			}
+			
+			if (field_name === "communities") {
+				newSelect.innerHTML = `
+  	<option value="ChennaiJS">ChennaiJS</option>
+  	<option value="TFJS">TFJS Dev</option>
+  	<option value="Dev Army">Dev Army</option>
+				`
+			}
+			
+			if (field_name === "prog_langs") {
+				newSelect.innerHTML = `
+      <option value="Python">Python</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Java">Java</option>
+      <option value="C++">C++</option>
+      <option value="C">C</option>
+      <option value="Swift">Swift</option>
+				`
+			}
+			
+			if ((field_name === "adv_skills") || (field_name==="beg_skills") || (field_name==="med_skills")) {
+				newSelect.innerHTML = `
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+				`
+			}
+			
+			fieldsAdd.appendChild(newSelect)
+			/*
+			var newSelect = document.createElement("select")
+			newSelect.id = field_name
+			newSelect.classList.add('u-full-width')
+			newSelect.multiple = true
+			newSelect.innerHTML = `<option value="ff"> ff </option>`
+			fieldsAdd.appendChild(newSelect)
+			*/
+		}
+		
+	}
+	
+	// remove: fieldsToUpdate label and options
+	document.getElementById("ftuLabel").outerHTML = "";
+	document.getElementById("ftuOptions").outerHTML = "";
+	document.getElementById("startUpdating").outerHTML = ""
+	var updateButton = document.createElement("input")
+	updateButton.type="button"
+	updateButton.onclick = "getDataAndPATCH()"
+	updateButton.value = "update"
+	fieldsAdd.appendChild(updateButton)
+}
+
+	// get data and PATCH Request
+</script>
 
 
 
