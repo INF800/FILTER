@@ -85,8 +85,8 @@ class authMemberRequest(BaseModel):
 	#for.updation
 	key        : str = None
 	val        : str = None
-	
-	
+
+
 
 # ----------------------------------------
 # ----------------------------------------
@@ -151,10 +151,10 @@ def filter(request: Request, db: Session = Depends(get_db)):
 	context = {
 		"request": request,
 		"members": mmbr
-		
+
 	}
 	
-	# if template or json
+	# template / json
 	return templates.TemplateResponse("filter.html", context)
 
 
