@@ -49,7 +49,7 @@
 </script>
 
 
-
+<! -- CARD -->
 <style>
 .card-container {
 	margin-left: auto;
@@ -64,22 +64,231 @@
 }
 
 .card {
-	height: 400px;
+	/* auto height */
 }	
+
+.container {
+	padding: 10px 0px 10px 0px;
+	width: 95%;
+}
+
+/* For Elements insode card */
+
+.full-name {
+	font-size: 120%;
+	font-weight: 300;
+	height: 26px; /* decrease ht. */
+}
+
+.skills {
+	  height: 300px;
+}
+
+.city {
+	font-size: 75%;
+}
+
+.communities {
+}
+
+.bio {
+	font-style: italic;
+}
+
+.social {
+	background-color: white;
+    position: absolute;
+    border: 1px solid red;
+    bottom: 0;
+}
+
+.icon-style {
+	color: red;
+}
+
+
+
+
+/* SKILL */
+/* ----- */
+
+html,
+body {
+  height: 100%
+}
+
+section {
+  background: #ced1da;
+  padding-top:2%;
+  color: black;
+}
+
+#myChart {
+  cursor: crosshair
+}
+
+.skills-chart {
+  text-align: center;
+  padding: 30px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.skills-chart-legend {
+  margin: 0 auto 15px
+}
+
+.skills-chart-canvas {
+  max-width: 700px;
+  margin: auto
+}
+
+.skills-chart-legend {
+  display: inline-block;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 20px;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em
+}
+
+.skills-chart-legend:before {
+  content: "";
+  display: block;
+  float: left;
+  margin: 3px 0 0 -15px;
+  height: 9px;
+  width: 9px
+}
+
+.skills-chart-legend--interest {
+  color: #2bb0d4
+}
+
+.skills-chart-legend--interest:before {
+  background: #2bb0d4
+}
+
+.skills-chart-legend--skill {
+  color: #61c191
+}
+
+.skills-chart-legend--skill:before {
+  background: #61c191
+}
+
 </style>
 
+<!-- cards page -->
 <div class="card-container">
+	
+	
 {% for member in members %}
-<div class="card-wrapper">
-	<div class="card">
-		Name: {{member.full_name}} <br/>
-		City: {{member.cur_city}}<br/>
-		Bio:  {{member.bio}}<br/>
-		Skills: {{member.adv_skills}}<br/>
-	</div>
-</div>
+<section class="card-wrapper" style="border: 1px solid red">
+	<div class="card" style="border: 1px solid red">
+		<div class="container" style="border: 1px solid white">
+			
+			<div class="row" style="border: 1px solid red">
+				<div class="six columns" style="border: 1px solid red">
+					<p class="u-full-width full-name">
+						{{ member.full_name }} <br />
+						<span class="city">
+							{{ member.cur_city }}
+						</span>
+					</p>
+					<div class="row" style="border: 1px solid red">
+							<div class="twelve columns" style="border: 1px solid red">
+								<span class="communities">
+									{% set comms = member.communities.split(',') %}
+									{% for com in comms %}
+									  <code>{{ com }} </code> &nbsp; 
+									{% endfor %}
+								</span>
+							</div>
+					</div>
+					<div class="row">
+						<div class="twelve columns bio">
+							❝ {{ member.bio }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="six columns u-full-width social">
+							<i class="fa fa-twitter icon-style"></i> &nbsp;
+							<i class="fa fa-linkedin icon-style"></i> &nbsp;
+							<i class="fa fa-github icon-style"></i> &nbsp;
+							<i class="fa fa-whatsapp icon-style"></i> &nbsp;
+							<i class="fa fa-envelope icon-style"></i> &nbsp;
+						</div>
+					</div>
+				</div>
+				<!-- right half -->
+				<div class="six columns skills" style="border: 1px solid red">
+
+
+<canvas id="myChart" class="chartjs" width="175" height="125"></canvas>
+
+				</div>
+			</div>
+			
+
+			
+		</div>
+		</div>
+</section>
+
+
+<script>
+// for skills graph
+// need to be made dynamic
+var ctx = document.getElementById("myChart");
+var data = {
+    labels: ["Website Design", "UX Design", "Marketing", "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
+    datasets: [
+        {
+            label: "Percieved Interest",
+            fillColor: "rgba(43,176,212,.4)",
+            strokeColor: "rgba(43,176,212,1)",
+            pointColor: "rgba(43,176,212,1)",
+            pointHighlightStroke: "rgba(43,176,212,1)",
+            data: [100, 70, 85, 90, 95, 75, 90, 100]
+        },
+        {
+            label: "Relative Skill",
+            fillColor: "rgba(140,200,50,.4)",
+            strokeColor: "rgba(140,200,50,1)",
+            pointColor: "rgba(140,200,50,1)",
+            pointHighlightStroke: "rgba(140,200,50,1)",
+            data: [85, 75, 70, 80, 85, 60, 75, 50]
+        }
+    ]
+};
+new Chart(ctx, {'type':'radar','data': data, 'options': {
+    animationSteps: 30,
+    animationEasing: "easeInOutExpo",
+    responsive: true,
+    showTooltips: true,
+    scaleOverride: true,
+    scaleSteps: 5,
+    scaleStepWidth: 20,
+    scaleStartValue: 0,
+    scaleLineColor: "rgba(200,200,200,.15)",
+    
+    angleShowLineOut: true,
+    angleLineWidth : 1,
+    angleLineColor : "rgba(200,200,250,.15)",
+    pointLabelFontFamily : "'freight-sans-pro', Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif",
+    pointLabelFontSize : 14,
+    pointLabelFontColor : "#99b",
+    pointDot : false,
+    datasetStrokeWidth : 1
+}});
+</script>
 {% endfor %}
-</div>
+
+
 
 
 </div>
