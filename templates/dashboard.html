@@ -1,5 +1,61 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>dashboard</h1>
+
+<style>
+.main-block {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	padding-top: 5%;
+}
+
+.row {
+	background-color: white;
+}
+
+</style>
+
+<div class="main-block">
+	
+	<h1>Dashboard</h1>
+	
+	
+	<div class="row">
+		<div class="twelve columns">
+			<div class="six columns">
+				<h6>Radar Graph</h6>
+				<canvas id="myChart" width="400" height="400"></canvas>
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
+
+<script>
+
+var ctx = document.getElementById('myChart') 
+var backgroundColor = [
+	'rgba(255, 99, 132, 0.2)',/*
+	'rgba(54, 162, 235, 0.2)',
+	'rgba(255, 206, 86, 0.2)',
+	'rgba(75, 192, 192, 0.2)',
+	'rgba(153, 102, 255, 0.2)',
+	'rgba(255, 159, 64, 0.2)'*/
+	]
+var data = {
+    labels: ['Running', 'Swimming', 'Eating', 'Cycling'],
+    datasets: [{
+        data: [20, 10, 4, 2],
+        backgroundColor: backgroundColor
+    }]
+}
+
+var myRadarChart = new Chart(ctx, {
+    type: 'radar',
+    data: data
+});
+</script>
 {% endblock %}

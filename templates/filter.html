@@ -3,7 +3,7 @@
 {% block content %}
 <div style="text-align:center">
 	
-<h3>Community Neighbours</h3>
+<h3>Digital Neighbourhood</h3>
 
 <!-- GET Request for filtering -->
 <div id="filterForm" style="display: none">
@@ -76,16 +76,18 @@
 
 .full-name {
 	font-size: 120%;
-	font-weight: 300;
+	color: #B00020;
+	font-weight: 370;
 	height: 26px; /* decrease ht. */
 }
 
 .skills {
-	  height: 300px;
+	  height: 270px; </* incrase/decr me to increse/decr ht. of card */
 }
 
 .city {
 	font-size: 75%;
+	color: black;
 }
 
 .communities {
@@ -93,20 +95,19 @@
 
 .bio {
 	font-style: italic;
+	font-size: 80%;
+	font-weight: 400;
+	color: rgba(0,0,0,.9);
 }
 
 .social {
-	background-color: white;
-    position: absolute;
-    border: 1px solid red;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .icon-style {
-	color: red;
+	color: black;
 }
-
-
 
 
 /* SKILL */
@@ -118,66 +119,14 @@ body {
 }
 
 section {
-  background: #ced1da;
-  padding-top:2%;
+  background: white;
+  padding-top:1%;
+  border: 1px solid white;
   color: black;
 }
 
-#myChart {
-  cursor: crosshair
-}
-
-.skills-chart {
-  text-align: center;
-  padding: 30px;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.skills-chart-legend {
-  margin: 0 auto 15px
-}
-
-.skills-chart-canvas {
-  max-width: 700px;
-  margin: auto
-}
-
-.skills-chart-legend {
-  display: inline-block;
-  list-style: none;
-  margin: 0 auto;
-  padding: 0 20px;
-  line-height: 1;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .05em
-}
-
-.skills-chart-legend:before {
-  content: "";
-  display: block;
-  float: left;
-  margin: 3px 0 0 -15px;
-  height: 9px;
-  width: 9px
-}
-
-.skills-chart-legend--interest {
-  color: #2bb0d4
-}
-
-.skills-chart-legend--interest:before {
-  background: #2bb0d4
-}
-
-.skills-chart-legend--skill {
-  color: #61c191
-}
-
-.skills-chart-legend--skill:before {
-  background: #61c191
+.chartjs {
+	/* background-color: white; */
 }
 
 </style>
@@ -187,20 +136,20 @@ section {
 	
 	
 {% for member in members %}
-<section class="card-wrapper" style="border: 1px solid red">
-	<div class="card" style="border: 1px solid red">
-		<div class="container" style="border: 1px solid white">
+<section class="card-wrapper">
+	<div class="card">
+		<div class="container">
 			
-			<div class="row" style="border: 1px solid red">
-				<div class="six columns" style="border: 1px solid red">
+			<div class="row">
+				<div class="six columns">
 					<p class="u-full-width full-name">
 						{{ member.full_name }} <br />
 						<span class="city">
 							{{ member.cur_city }}
 						</span>
 					</p>
-					<div class="row" style="border: 1px solid red">
-							<div class="twelve columns" style="border: 1px solid red">
+					<div class="row">
+							<div class="twelve columns">
 								<span class="communities">
 									{% set comms = member.communities.split(',') %}
 									{% for com in comms %}
@@ -212,6 +161,7 @@ section {
 					<div class="row">
 						<div class="twelve columns bio">
 							❝ {{ member.bio }}
+							<br/> <br/>
 						</div>
 					</div>
 					<div class="row">
@@ -225,11 +175,11 @@ section {
 					</div>
 				</div>
 				<!-- right half -->
-				<div class="six columns skills" style="border: 1px solid red">
-
-
-<canvas id="myChart" class="chartjs" width="175" height="125"></canvas>
-
+				<div class="six columns skills">
+					
+					<!-- Skills chart here -->
+					<canvas id="{{member.id}}" class="chartjs" width="165" height="115" ></canvas>
+					
 				</div>
 			</div>
 			
@@ -243,48 +193,51 @@ section {
 <script>
 // for skills graph
 // need to be made dynamic
-var ctx = document.getElementById("myChart");
+var ctx = document.getElementById("{{member.id}}");
+
 var data = {
     labels: ["Website Design", "UX Design", "Marketing", "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
     datasets: [
         {
-            label: "Percieved Interest",
-            fillColor: "rgba(43,176,212,.4)",
-            strokeColor: "rgba(43,176,212,1)",
-            pointColor: "rgba(43,176,212,1)",
-            pointHighlightStroke: "rgba(43,176,212,1)",
+            label: "Interest",
+            backgroundColor: "rgba(43,176,212,.4)", //blue
+            borderColor: "rgba(43,176,212,.6)",
+            pointBackgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor: "rgba(0,0,0,0)",
             data: [100, 70, 85, 90, 95, 75, 90, 100]
         },
         {
-            label: "Relative Skill",
-            fillColor: "rgba(140,200,50,.4)",
-            strokeColor: "rgba(140,200,50,1)",
-            pointColor: "rgba(140,200,50,1)",
-            pointHighlightStroke: "rgba(140,200,50,1)",
+            label: "Relative Skill", // green
+            backgroundColor: "rgba(140,200,50,.4)",
+            borderColor: "rgba(140,200,50,.6)",
+            pointBackgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor: "rgba(0,0,0,0)",
             data: [85, 75, 70, 80, 85, 60, 75, 50]
         }
     ]
 };
-new Chart(ctx, {'type':'radar','data': data, 'options': {
-    animationSteps: 30,
-    animationEasing: "easeInOutExpo",
-    responsive: true,
-    showTooltips: true,
-    scaleOverride: true,
-    scaleSteps: 5,
-    scaleStepWidth: 20,
-    scaleStartValue: 0,
-    scaleLineColor: "rgba(200,200,200,.15)",
-    
-    angleShowLineOut: true,
-    angleLineWidth : 1,
-    angleLineColor : "rgba(200,200,250,.15)",
-    pointLabelFontFamily : "'freight-sans-pro', Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif",
-    pointLabelFontSize : 14,
-    pointLabelFontColor : "#99b",
-    pointDot : false,
-    datasetStrokeWidth : 1
-}});
+
+var options = {
+	legend: {
+            labels: {
+                fontColor: "{{"rgba(0,0,0,.8)"}}",//"rgba(0,0,0,.8)",
+            }
+        },
+	scale: { 
+		angleLines: { color: 'rgba(0,0,0,.5)' },
+		gridLines: { color: 'rgba(0,0,0,.3)' },
+		pointLabels: {fontColor: 'rgba(0,0,0,.7)'},
+		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(0,0,0,.88)'}
+		
+	}
+}
+
+new Chart(ctx, {
+	'type':'radar',
+	'data': data, 
+	options: options
+});
+
 </script>
 {% endfor %}
 
