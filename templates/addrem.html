@@ -43,7 +43,7 @@
   <div class="row">
   <div class="twelve columns">
   <label>Bio</label>
-  <textarea class="u-full-width" placeholder="Drag lower right corner to expand text box... tell about yourself" id="bio"></textarea>
+  <textarea class="u-full-width" placeholder="Drag lower right corner to expand text box... tell about yourself" id="mybio"></textarea>
   </div>
   </div>
   
@@ -118,7 +118,7 @@
   <input class="u-full-width" type="text" id="fvtTools" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
   
   <label>Dev Communities you are part of</label>
-  <select class="u-full-width" id="communities" multiple>
+  <select class="u-full-width" id="mycommunities" multiple>
   	<option value="ChennaiJS">ChennaiJS</option>
   	<option value="TFJS">TFJS Dev</option>
   	<option value="Dev Army">Dev Army</option>
@@ -150,7 +150,7 @@
   	
   	<div class="eight columns">
   		<label>Email (will be needed to permanently remove your entry)</label>
-      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="email">
+      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="myemail">
   	</div>
 
   </div>
@@ -179,7 +179,7 @@
 		var nickName = document.getElementById("nickName").value
 		var curLoc   = document.getElementById("curLoc").value
 		var curStatus= document.getElementById("curStatus").value
-		var bio      = document.getElementById("bio").value
+		var bio      = document.getElementById("mybio").value
 		
 		var progLangsList = []
 		var multiSelect   = document.getElementById("progLangs")
@@ -206,7 +206,7 @@
 		}
 		
 		var communitiesList = []
-		var multiSelect   = document.getElementById("communities")
+		var multiSelect   = document.getElementById("mycommunities")
 		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
 			communitiesList.push(multiSelect.selectedOptions[i].value)
 		}
@@ -217,7 +217,7 @@
 		var whatsappNum= document.getElementById("whatsappNum").value
 		var twitterUrl = document.getElementById("twitterUrl").value
 		var githubUrl  = document.getElementById("githubUrl").value
-		var email      = document.getElementById("email").value
+		var email      = document.getElementById("myemail").value
 		var secretKey  = document.getElementById("secretKey").value
 
 	  //post
