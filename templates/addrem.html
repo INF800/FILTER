@@ -2,6 +2,17 @@
 
 {% block content %}
 
+<style>
+.notice-yellow {
+	font-size: 56%; 
+	margin-bottom: 7%; 
+	color: #2e3436; 
+	background-color:#ffb952; 
+	border: 1px solid #ffb952; 
+	border-radius: 3px;">
+}
+</style>
+
 <!-- forms [ADD ENTRY] -->
 <!---------------------------------------------->
 <div id="add-form" style="display: block; text-align: center; margin-top: 25px; width: 70%; margin-left: auto; margin-right: auto;">
@@ -47,8 +58,126 @@
   </div>
   </div>
   
+  <!-- new -->
+  <h5>Interests In Domains and Your Actual Skills In It</h5>
+  <div class="notice-yellow">
+  	<b>Note:</b> First slider is for indicating level of <b>Interest</b> and second slider is for <b>Relative Skill</b>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<label>Select Domain</label>
+  		<select class="u-full-width" type="text" placeholder="eg. Data Science" id="mydom1"> </select>
+  	</div>
+  	<div class="four columns">
+  		<label>Interest</label>
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom1Interest">
+  	</div>
+  	<div class="four columns">
+  		<label>Relative Skill</label>
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom1Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. DSA" id="mydom2"></select>
+  	</div>
+  	<div class="four columns">
+  		<div class="notice-yellow" style="margin-bottom: 0.5%">
+  			Hello
+  		</div>
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom2Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom2Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Big Data" id="mydom3"></select>
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom3Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom3Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Full Stack" id="mydom4"></select>
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom4Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom4Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. UI/UX" id="mydom5"> </select>
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom5Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom5Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Android or iOS or Cross Platform" id="mydom6"> </select>
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom6Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom6Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. C++ or Python or Javascript" id="mydom7"></select>
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom7Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom7Skill">
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Marketing" id="mydom8"> </select>
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom8Interest">
+  	</div>
+  	<div class="four columns">
+  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom8Skill">
+  	</div>
+  </div>
+  
+<script>
+	// add options to multiple select
+	var optionsDomains = `
+		<option value="0">None</option>
+		<option value="1">Machine Learning</option>
+	`;
+	
+	for (let i=1; i<9; i++ ){
+		var dom = "mydom" + i.toString();
+		document.getElementById(dom).innerHTML = optionsDomains;
+	}
+	document.getElementById("mydom1").innerHTML = optionsDomains;
+	
+</script>
+  
+  <!-- end new -->
   
   <!-- SKILLS -->
+  <!--
   <h5>Skills</h5>
   
   <div class="row">
@@ -126,6 +255,7 @@
   
   </div>
   </div>
+  -->
   
   <!-- SOCIAL -->
   <h5>Social</h5>
@@ -149,7 +279,10 @@
   	</div>
   	
   	<div class="eight columns">
-  		<label>Email (will be needed to permanently remove your entry)</label>
+  		<label>Email</label>
+  		<div class="notice-yellow"style="margin-bottom: 0.5%" >
+  			Please remember entered email. Will be used later.
+  		</div>
       <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="myemail">
   	</div>
 
@@ -160,7 +293,10 @@
   
   <div class="row">
   <div class="twelve columns">
-  <label>Create your secret key (will be needed to permanently remove your entry)</label>
+  <label>Create your secret key</label>
+  <div class="notice-yellow"style="margin-bottom: 0.5%" >
+  			Please remember entered key. Will be used later.
+  </div>
   <input class="u-full-width" type="text" placeholder="secret key (strong and easy to remeber)" id="secretKey">
   </div>
   </div>
@@ -247,8 +383,6 @@
 	}
 
 </script>
-
-
 
 
 <!-- DELETE FORM -->
