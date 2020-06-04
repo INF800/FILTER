@@ -3,19 +3,56 @@
 {% block content %}
 <div style="text-align:center">
 	
-	
 <h3>Community Neighbours</h3>
 
-
 <!-- GET Request for filtering -->
-<form style="display: inline">
-	<input type="text" placeholder="Name">
-	<input type="text" placeholder="Skills">
+<div id="filterForm" style="display: none">
+<form>
+	<div class="row">
+		<div class="three columns">
+			<label>Full Name</label>
+			<input class="u-full-width" type="text" placeholder="Full Name" name="name">
+		</div>
+		<div class="three columns">
+			<label>Location</label>
+			<select class="u-full-width" multiple name='loc'>
+				<option value="CHN">Chennai</option>
+				<option value="BGLR">Bangalore</option>
+			</select>
+		</div>
+		<div class="three columns">
+			<label>Skills</label>
+			<select class="u-full-width" multiple name='skills'>
+				<option value="frontend">Frontend</option>
+				<option value="backend">Backend</option>
+			</select>
+		</div>
+		<div class="three columns">
+			<label>Student/Working</label>
+			<select class="u-full-width" name="status">
+				<option value="Working">Working</option>
+				<option value="Student">Student</option>
+			</select>
+		</div>
+	</div>
+	<button type="submit">FILTER</button>
 </form>
+</div>
+
+<input id="filter" onclick="filterForm()" class="button" type="button" value="Toggle Filter">
+
+<script>
+	function filterForm(){
+		document.getElementById("filter").outerHTML = ""
+		document.getElementById("filterForm").style.display = "block"
+	}
+</script>
+
+
 
 
 {% for member in members %}
-<div style="border: 1px solid black; margin-bottom: 10px">
+<div style="border: 1px solid #babdb6; margin-bottom: 10px">
 	<div>
 		Name: {{member.full_name}} <br/>
 		City: {{member.cur_city}}<br/>

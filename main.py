@@ -128,16 +128,16 @@ def dashboard(request: Request, json_or_app="app"):
 	returns either temate or json based on query params
 	"""
 	
-	payload = None
+	stats = None
 	
 	context = {
 		"request": request,
-		"payload": payload
+		"payload": stats
 	}
 	
 	# if template or json
 	if json_or_app == "json":
-		return {"payload": payload}
+		return {"payload": stats}
 	return templates.TemplateResponse("dashboard.html", context)
 
 
@@ -154,7 +154,6 @@ def filter(request: Request, json_or_app="app",db: Session = Depends(get_db)):
 	
 	mmbr = db.query(Member).all()
 	
-	#payload
 	context = {
 		"request": request,
 		"members": mmbr
