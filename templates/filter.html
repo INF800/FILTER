@@ -50,10 +50,28 @@
 
 
 
+<style>
+.card-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
 
+.card-wrapper {
+	border: 1px solid #babdb6; 
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.card {
+	height: 400px;
+}	
+</style>
+
+<div class="card-container">
 {% for member in members %}
-<div style="border: 1px solid #babdb6; margin-bottom: 10px">
-	<div>
+<div class="card-wrapper">
+	<div class="card">
 		Name: {{member.full_name}} <br/>
 		City: {{member.cur_city}}<br/>
 		Bio:  {{member.bio}}<br/>
@@ -61,6 +79,8 @@
 	</div>
 </div>
 {% endfor %}
+</div>
+
 
 </div>
 {% endblock %}
