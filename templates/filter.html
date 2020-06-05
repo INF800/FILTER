@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div style="text-align:center">
+<div style="text-align:center;">
 	
-<h3>Digital Neighbourhood</h3>
+<h3 >Digital Neighbourhood</h3>
 
 <!-- GET Request for filtering -->
 <div id="filterForm" style="display: none">
@@ -58,7 +58,7 @@
 }
 
 .card-wrapper {
-	border: 1px solid #babdb6; 
+	/*border: 1px solid white;*/
 	margin-bottom: 10px;
 	border-radius: 5px;
 }
@@ -76,9 +76,9 @@
 
 .full-name {
 	font-size: 120%;
-	color: #B00020;
-	font-weight: 370;
-	height: 26px; /* decrease ht. */
+	color: rgba(255,0,0,.6);
+	font-weight: 470;
+	height: 26px; /* decreasing ht. */
 }
 
 .skills {
@@ -87,7 +87,7 @@
 
 .city {
 	font-size: 75%;
-	color: black;
+	color: rgba(255,255,255,0.6);
 }
 
 .communities {
@@ -97,7 +97,7 @@
 	font-style: italic;
 	font-size: 90%;
 	font-weight: 401;
-	color: rgba(0,0,0,.8);
+	color: rgba(255,255,255,.6);
 	padding-top: 4%;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .icon-style {
-	color: black;
+	color: #ffb952;
 }
 
 
@@ -120,11 +120,12 @@ body {
 }
 
 section {
-  background: white;
+  background: #181818;
+  border: 1px solid #181818;
   padding-top:1%;
-  border: 1px solid white;
   color: black;
 }
+
 
 .chartjs {
 	/* background-color: white; */
@@ -134,7 +135,6 @@ section {
 
 <!-- cards page -->
 <div class="card-container">
-	
 
 <script>
 // plot skills radar dynamically (helps for loop)
@@ -164,17 +164,18 @@ var data = {
     ]
 };
 
+
 var options = {
 	legend: {
             labels: {
-                fontColor: "{{"rgba(0,0,0,.8)"}}",//"rgba(0,0,0,.8)",
+                fontColor: "{{"rgba(255,255,255,.3)"}}",//"rgba(0,0,0,.8)",
             }
         },
 	scale: { 
-		angleLines: { color: 'rgba(0,0,0,.3)' },
-		gridLines: { color: 'rgba(0,0,0,.1)' },
-		pointLabels: {fontColor: 'rgba(0,0,0,.7)'},
-		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(0,0,0,.88)'}
+		angleLines: { color: 'rgba(0,0,0,1)' },
+		gridLines: { color: 'rgba(0,0,0,.3)' },
+		pointLabels: {fontColor: 'rgba(255,255,255,,.7)'},
+		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(255,255,255,.5)'}
 		
 	}
 }
@@ -186,8 +187,8 @@ new Chart(ctx, {
 });
 
 } // end function plotSkillsRadar
-</script>
 
+</script>
 
 	
 {% for member in members %}
