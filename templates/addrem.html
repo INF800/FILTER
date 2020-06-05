@@ -10,7 +10,7 @@
 	color: rgba(250,250,250,.8);
 	/*background-color:#ffb952; 
 	border: 1px solid #ffb952;*/ 
-	border-radius: 3px;">
+	border-radius: 3px;
 }
 
 ::-webkit-resizer {
@@ -58,14 +58,26 @@
   </div>
   
   <div class="row">
-  <div class="twelve columns">
-  <label>Bio</label>
-  <textarea class="u-full-width" style="height: 170px" placeholder="Drag lower right corner to expand text box... tell more about yourself" id="mybio"></textarea>
+  	<div class="twelve columns">
+  		<label>Bio</label>
+  		<textarea class="u-full-width" style="height: 170px" placeholder="Drag lower right corner to expand text box... tell more about yourself" id="mybio"></textarea>
+  		</div>
   </div>
+  
+  <div class="row">
+  	<div class="twelve columns">
+  <label>Dev Communities</label>
+  <select class="u-full-width" id="mycommunities" multiple>
+  	<option value="None">None</option>
+  	<option value="ChennaiJS">ChennaiJS</option>
+  	<option value="TFJS">TFJS Dev</option>
+  	<option value="Dev Army">Dev Army</option>
+  </select>
+  	</div>
   </div>
 
   <!-- new -->
-  <h5>Interests In Domains and Your Actual Skills In It</h5>
+  <h5 style="padding-top: 4%">Interests In Domains and Your Actual Skills In It</h5>
   
   <div class="row"> 
   	<div class="four columns">
