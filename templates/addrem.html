@@ -51,8 +51,6 @@
       
       <label>Location</label>
       <select class="u-full-width" id="curLoc">
-        <option value="Chennai">Chennai</option>
-        <option value="Bangalore">Bangalore</option>
       </select>
     </div>
   </div>
@@ -66,22 +64,37 @@
   
   <div class="row">
   	<div class="twelve columns">
-  <label>Dev Communities</label>
-  <select class="u-full-width" id="mycommunities" multiple>
-  	<option value="None">None</option>
-  	<option value="ChennaiJS">ChennaiJS</option>
-  	<option value="TFJS">TFJS Dev</option>
-  	<option value="Dev Army">Dev Army</option>
-  </select>
+  		  <label>Dev Communities</label>
+  		  <select class="u-full-width" id="mycommunities" multiple>
+  		  </select>
   	</div>
   </div>
+  
+  <!-- div class="row">
+  	<div class="twelve columns">
+  		<label>Community Behaviour</label>
+  		<div class="notice-yellow" style="margin-bottom: 2%">
+  			How would you respond to your community memebers?
+  		</div>
+  		<select class="u-full-width">
+  			<option value="middle">Don't want to mention</option>
+  			<option value="closed">
+  				Like Linus Torvalds I believe respect must be earned not given.
+  				If someone in community is unreasonable or harsh, I will treat them accordingly
+  			</option>
+  			<option value="open">
+  				I believe no matter how unreasonable or harsh the other preson is, respect must
+  				be given because it tells a lot about me than about the other person.
+  			</option>
+  		</select>
+  	</div>
+  </div -->
 
-  <!-- new -->
-  <h5 style="padding-top: 4%">Interests In Domains and Your Actual Skills In It</h5>
+
+  <h5 style="padding-top: 8%; padding-bottom: 4%">Interests In Domains and Your Actual Skills In It</h5>
   
   <div class="row"> 
   	<div class="four columns">
-  		<!-- label>Select Domain</label -->
   		<select class="u-full-width" type="text" placeholder="eg. Data Science" id="mydom1"> </select>
   	</div>
   	<div class="four columns">
@@ -257,7 +270,25 @@
   </div>
   
 <script>
-	// add options to multiple select
+	// add options to multiple select (LIST WILL BE USED FOR UPATING TOO)
+	var fullCommunitiesList = `
+	  		  <option value="None">None</option>
+  		  	<option value="ChennaiJS">ChennaiJS</option>
+  		  	<option value="TFJS">TFJS Dev</option>
+  		  	<option value="Dev Army">Dev Army</option>
+  		  	<option value="Etierity">Etierity</option>
+	`;
+	document.getElementById("mycommunities").innerHTML = fullCommunitiesList;
+	
+	var citiesList = `
+	        <option value="CHN">Chennai</option>
+	        <option value="BGLR">Bangalore</option>
+	        <option value"HYD">Hyderabad</option>
+	        <option value="MBY">Mumbai</option>
+	        <option value="Pune">Pune</option>
+	`;
+	document.getElementById("curLoc").innerHTML = citiesList
+	
 	var optionsDomains = `
 	    <option value="0">None</option>
 	    <option value="DSA">Datastructures & Algorithms</option>
@@ -300,89 +331,6 @@
 	document.getElementById("mydom1").innerHTML = optionsDomains;
 	
 </script>
-  
-  <!-- end new -->
-  
-  <!-- SKILLS -->
-  <!--
-  <h5>Skills</h5>
-  
-  <div class="row">
-  <div class="twelve columns">
-  <label>Programming Languages</label>
-  <select class="u-full-width" id="progLangs" multiple>
-      <option value="Python">Python</option>
-      <option value="Javascript">Javascript</option>
-      <option value="Java">Java</option>
-      <option value="C++">C++</option>
-      <option value="C">C</option>
-      <option value="Swift">Swift</option>
-  </select>
-  
-  <label>Advanced Level of Proficiency</label>
-  <select class="u-full-width" id="advSkills" multiple>
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-  </select>
-  
-  <label>Intermediate Level of Proficiency</label>
-  <select class="u-full-width" id="medSkills" multiple>
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-  </select>
-  
-  <label>Beginner</label>
-  <select class="u-full-width" id="begSkills" multiple>
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-  </select>
-  
-  <label>Tools or Frameworks of choice</label>
-  <input class="u-full-width" type="text" id="fvtTools" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
-  
-  <label>Dev Communities you are part of</label>
-  <select class="u-full-width" id="mycommunities" multiple>
-  	<option value="ChennaiJS">ChennaiJS</option>
-  	<option value="TFJS">TFJS Dev</option>
-  	<option value="Dev Army">Dev Army</option>
-  </select>
-  
-  </div>
-  </div>
-  -->
   
   <!-- SOCIAL -->
   <h5>Social</h5>
@@ -429,7 +377,7 @@
   </div>
   
   <input type="button" onclick="getDataAndPOST()" value="submit">
-  
+  <div id="consoleee"></div>
 </div>
 
 
@@ -438,35 +386,12 @@
 	// post for add FORM
 	// -----------------
 	function getDataAndPOST() {
+		
 		var fullName = document.getElementById("fullName").value
 		var nickName = document.getElementById("nickName").value
 		var curLoc   = document.getElementById("curLoc").value
 		var curStatus= document.getElementById("curStatus").value
 		var bio      = document.getElementById("mybio").value
-		
-		var progLangsList = []
-		var multiSelect   = document.getElementById("progLangs")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			progLangsList.push(multiSelect.selectedOptions[i].value)
-		}
-		
-		var advSkillsList = []
-		var multiSelect   = document.getElementById("advSkills")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			advSkillsList.push(multiSelect.selectedOptions[i].value)
-		}
-		
-		var medSkillsList = []
-		var multiSelect   = document.getElementById("medSkills")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			medSkillsList.push(multiSelect.selectedOptions[i].value)
-		}
-		
-		var begSkillsList = []
-		var multiSelect   = document.getElementById("begSkills")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			begSkillsList.push(multiSelect.selectedOptions[i].value)
-		}
 		
 		var communitiesList = []
 		var multiSelect   = document.getElementById("mycommunities")
@@ -474,39 +399,120 @@
 			communitiesList.push(multiSelect.selectedOptions[i].value)
 		}
 		
-		var fvtTools   = document.getElementById("fvtTools").value.replace(/\s/g, "").toLowerCase()
-		
 		var linkedinUrl= document.getElementById("linkedinUrl").value
 		var whatsappNum= document.getElementById("whatsappNum").value
 		var twitterUrl = document.getElementById("twitterUrl").value
 		var githubUrl  = document.getElementById("githubUrl").value
 		var email      = document.getElementById("myemail").value
 		var secretKey  = document.getElementById("secretKey").value
-
+		
+		var mydom1         = document.getElementById("mydom1").value
+		var mydom1Skill    = document.getElementById("skillLabel1").innerHTML
+		var mydom1Interest = document.getElementById("interestLabel1").innerHTML
+		var mydom2         = document.getElementById("mydom2").value
+		var mydom2Skill    = document.getElementById("skillLabel2").innerHTML
+		var mydom2Interest = document.getElementById("interestLabel2").innerHTML
+		var mydom3         = document.getElementById("mydom3").value
+		var mydom3Skill    = document.getElementById("skillLabel3").innerHTML
+		var mydom3Interest = document.getElementById("interestLabel3").innerHTML
+		var mydom4         = document.getElementById("mydom4").value
+		var mydom4Skill    = document.getElementById("skillLabel4").innerHTML
+		var mydom4Interest = document.getElementById("interestLabel4").innerHTML
+		var mydom5         = document.getElementById("mydom5").value
+		var mydom5Skill    = document.getElementById("skillLabel5").innerHTML
+		var mydom5Interest = document.getElementById("interestLabel5").innerHTML
+		var mydom6         = document.getElementById("mydom6").value
+		
+		
+		var mydom6Skill    = document.getElementById("skillLabel6").innerHTML
+		var mydom6Interest = document.getElementById("interestLabel6").innerHTML
+		var mydom7         = document.getElementById("mydom7").value
+		var mydom7Skill    = document.getElementById("skillLabel7").innerHTML
+		var mydom7Interest = document.getElementById("interestLabel7").innerHTML
+		var mydom8         = document.getElementById("mydom8").value
+		var mydom8Skill    = document.getElementById("skillLabel8").innerHTML
+		var mydom8Interest = document.getElementById("interestLabel8").innerHTML
+		
+		document.getElementById('consoleee').innerHTML=`
+	  	full_name       : ${fullName}, <br/>
+	  	nick_name       : ${nickName}, <br/>
+	  	cur_city        : ${curLoc}, <br/>
+	  	cur_status      : ${curStatus}, <br/>
+	  	bio             : ${bio}, <br/>
+	  	communities     : ${communitiesList.toString()}, <br/>
+	  	linkedin_url    : ${linkedinUrl}, <br/>
+	  	whatsapp_num    : ${whatsappNum}, <br/>
+	  	twitter_url     : ${twitterUrl}, <br/>
+	  	github_url      : ${githubUrl}, <br/>
+	  	email           : ${email}, <br/>
+	  	secret_key      : ${secretKey}, <br/>
+	  	dom_1           : ${mydom1}, <br/>
+	  	dom_2           : ${mydom2}, <br/>
+	  	dom_3           : ${mydom3}, <br/>
+	  	dom_4           : ${mydom4}, <br/>
+	  	dom_5           : ${mydom5}, <br/>
+	  	dom_6           : ${mydom6}, <br/>
+	  	dom_7           : ${mydom7}, <br/>
+	    dom_8           : ${mydom8}, <br/>
+	    dom_1skill     : ${mydom1Skill}, <br/>
+	    dom_1interest  : ${mydom1Interest}, <br/>
+	    dom_2skill     : ${mydom2Skill}, <br/>
+	    dom_2interest  : ${mydom2Interest}, <br/>
+	    dom_3skill     : ${mydom3Skill}, <br/>
+	    dom_3interest  : ${mydom3Interest}, <br/>
+	    dom_4skill     : ${mydom4Skill}, <br/>
+	    dom_4interest  : ${mydom4Interest}, <br/>
+	    dom_5skill     : ${mydom5Skill}, <br/>
+	    dom_5interest  : ${mydom5Interest}, <br/>
+	    dom_6skill     : ${mydom6Skill}, <br/>
+	    dom_6interest  : ${mydom6Interest}, <br/>
+	    dom_7skill     : ${mydom7Skill}, <br/>
+	    dom_7interest  : ${mydom7Interest}, <br/>
+	    dom_8skill     : ${mydom8Skill}, <br/>
+	    dom_8interest  : ${mydom8Interest} <br />
+		`;
+		
 	  //post
-	  axios.post('/api/member', {
-	  	full_name       : fullName,
-	  	nick_name       : nickName,
-	  	cur_city        : curLoc,
-	  	cur_status      : curStatus,
-	  	bio             : bio,
-	  	prog_langs      : progLangsList.toString(),
-	  	adv_skills      : advSkillsList.toString(),
-	  	med_skills      : medSkillsList.toString(),
-	  	beg_skills      : begSkillsList.toString(),
-	  	communities     : communitiesList.toString(),
-	  	fvt_tools       : fvtTools,
-	  	linkedin_url    : linkedinUrl,
-	  	whatsapp_num    : whatsappNum,
-	  	twitter_url     : twitterUrl,
-	  	github_url      : githubUrl,
+	  axios.post('/api/member'), {
+	  	full_name       : "TEST", //fullName,
+	  	nick_name       : "TEST", //nickName,
+	  	cur_city        : "TEST", //curLoc,
+	  	cur_status      : "TEST", //curStatus,
+	  	bio             : "TEST", //bio,
+	  	communities     : "TEST", //communitiesList.toString(),
+	  	linkedin_url    : "TEST", //linkedinUrl,
+	  	whatsapp_num    : "TEST", //whatsappNum,
+	  	twitter_url     : "TEST", //twitterUrl,
+	  	github_url      : "TEST", //githubUrl,
 	  	email           : email,
-	  	secret_key      : secretKey
+	  	secret_key      : "TEST", //secretKey,
+	  	dom_1           : "TEST", //mydom1,
+	  	dom_2           : "TEST", //mydom2,
+	  	dom_3           : "TEST", //mydom3,
+	  	dom_4           : "TEST", //mydom4,
+	  	dom_5           : "TEST", //mydom5,
+	  	dom_6           : "TEST", //mydom6,
+	  	dom_7           : "TEST", //mydom7,
+	    dom_8           : "TEST", //mydom8,
+	    dom_1skill     : "TEST", //mydom1Skill,
+	    dom_1interest  : "TEST", //mydom1Interest,
+	    dom_2skill     : "TEST", //mydom2Skill,
+	    dom_2interest  : "TEST", //mydom2Interest,
+	    dom_3skill     : "TEST", //mydom3Skill,
+	    dom_3interest  : "TEST", //mydom3Interest,
+	    dom_4skill     : "TEST", //mydom4Skill,
+	    dom_4interest  : "TEST", //mydom4Interest,
+	    dom_5skill     : "TEST", //mydom5Skill,
+	    dom_5interest  : "TEST", //"TEST", //mydom5Interest,
+	    dom_6skill     : "TEST", //mydom6Skill,
+	    dom_6interest  : "TEST", //mydom6Interest,
+	    dom_7skill     : "TEST", //mydom7Skill,
+	    dom_7interest  : "TEST", //mydom7Interest,
+	    dom_8skill     : "TEST", //mydom8Skill,
+	    dom_8interest  : "TEST"//mydom8Interest
 	  }
-	  ).then(function(response){
-	  	//console.log(response)
-	  	window.location.href = "/";
-	  })
+	  );
+	  
 	}
 
 </script>

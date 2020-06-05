@@ -78,7 +78,7 @@ class MemberRequest(BaseModel):
 	 dom_3          : str
 	 dom_4          : str
 	 dom_5          : str
-	 dom_5          : str
+	 dom_6          : str
 	 dom_7          : str
 	 dom_8          : str
 	 dom_1skill     : str
