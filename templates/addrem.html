@@ -207,10 +207,10 @@
   	<div class="four columns">
     <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
     <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
-        oninput="document.getElementById('interestLabel7').innerHTML = this.value;"
+        oninput="document.getElementById('interestLabel8').innerHTML = this.value;"
         step="1" name="rangeVal" id="rangeVal" value="1">
     </input>
-    <em id="interestLabel7" style="font-style: Monospace;">0</em>
+    <em id="interestLabel8" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
     <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
@@ -247,8 +247,38 @@
 <script>
 	// add options to multiple select
 	var optionsDomains = `
-		<option value="0">None</option>
-		<option value="1">Machine Learning</option>
+	    <option value="0">None</option>
+	    <option value="DSA">Datastructures & Algorithms</option>
+	    <option value="UI/UX">UI/UX</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Computer Vison">Computer Vision</option>
+      <option value="NLP">NLP</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="UAVs">Drones/UAVs</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Team Lead">Team Lead</option>
+      <option value="Public Speaking">Public Speaking</option>
+      <option value="Writing">Content Writing</option>
+      <option value="Product Demo">Product Demo</option>
+      <option value="Adv Mathethematics">Advanced Mathethematics</option>
+      <option value="C">C</option>
+      <option value="C++">C++</option>
+      <option value="Python">Python</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Swift">Swift</option>
+      <option value="Ruby">Ruby</option>
+      <option value="Java">Java</option>
 	`;
 	
 	for (let i=1; i<9; i++ ){
