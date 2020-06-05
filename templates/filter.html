@@ -171,8 +171,8 @@ var options = {
             }
         },
 	scale: { 
-		angleLines: { color: 'rgba(0,0,0,.5)' },
-		gridLines: { color: 'rgba(0,0,0,.3)' },
+		angleLines: { color: 'rgba(0,0,0,.3)' },
+		gridLines: { color: 'rgba(0,0,0,.1)' },
 		pointLabels: {fontColor: 'rgba(0,0,0,.7)'},
 		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(0,0,0,.88)'}
 		
@@ -248,9 +248,9 @@ new Chart(ctx, {
 <script>
 plotSkillsRadar(
 		canvasId="{{member.id}}",
-		labelsList=["Website Design", "UX Design", "Marketing"],// "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
-		InterestDataList=[100, 0, 90], //, 90, 95, 75, 90, 100],
-		skillDataList=[85, 75, 70] //, 80, 85, 60, 75, 50]
+		labelsList=["Website Design", "UX Design", "Marketing", "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
+		InterestDataList=[100, 70, 90, 90, 95, 75,  90, 100],
+		skillDataList=[85, 75, 70, 80, 85, 60, 75, 50]
 );
 </script>
 {% endfor %}

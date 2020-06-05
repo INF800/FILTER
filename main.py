@@ -108,6 +108,7 @@ class authMemberRequest(BaseModel):
 	#for updation (field, field_val)
 	key        : str = None
 	val        : str = None
+	val_type   : str = "str"
 
 
 
@@ -291,45 +292,16 @@ def update_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 		
 		# take key where we need to update and value to 
 		# which we have to update
-		key = mmbr_req.key
-		val = mmbr_req.val
-		
+		key       = mmbr_req.key
+		val       = mmbr_req.val
+		val_type  = mmbr_req.val_type # string by default "str"
+		"""
+		a="full_name"
+		b="xx"
+		ty = "str"
+		"""
 		#mmbr.key = val (key is str)
-		if key == "nick_name":
-			mmbr.nick_name = val
-		if key == "full_name":
-			mmbr.full_name = val
-		if key == "cur_status":
-			mmbr.cur_status = val
-		if key == "cur_city":
-			mmbr.cur_city = val
-		if key == "bio":
-			mmbr.bio = val
-		if key == "twitter_url":
-			mmbr.twitter_url = val
-		if key == "linkedin_url":
-			mmbr.linkedin_url = val
-		if key == "whatsapp_num":
-			mmbr.whatsapp_num = val
-		if key == "github_url":
-			mmbr.github_url = val
-		if key == "email":
-			mmbr.email = email
-		if key == "communities":
-			mmbr.communities = val
-		if key == "prog_langs":
-			mmbr.prog_langs = val
-		if key == "adv_skills":
-			mmbr.adv_skills = val
-		if key == "med_skills":
-			mmbr.med_skills = val
-		if key == "beg_skills":
-			mmbr.beg_skills = val
-		if key == "fvt_tools":
-			mmbr.fvt_tools = val
-		if key == "secret_key":
-			mmbr.secret_key = val
-		
+		exec(f"mmbr.{key}={val_type}('{val}')") # field name from db must match exactly
 		
 		db.add(mmbr)
 		db.commit()
