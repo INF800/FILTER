@@ -145,7 +145,7 @@ def add_or_remove_members(request: Request):
 	
 
 @app.get("/api/dashboard/{json_or_app}")
-def dashboard(request: Request, json_or_app="app"):
+def dashboard(request: Request, json_or_app="app", db: Session = Depends(get_db)):
 	"""
 	Display summary details of members
 	
@@ -153,6 +153,17 @@ def dashboard(request: Request, json_or_app="app"):
 	"""
 	
 	stats = None
+	mmbrs = db.query(Member).all()
+	n_mmbrs = db.query(Member).count()
+	print(n_mmbrs)
+	col_names = Member.__table__.columns.keys()
+	print(col_names)
+	
+	# number of people vs skills - interested, skilled
+	# nop vs loc
+	# piechart - working vs stud
+	# nop vs dev communities
+	
 	
 	context = {
 		"request": request,
@@ -295,11 +306,7 @@ def update_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 		key       = mmbr_req.key
 		val       = mmbr_req.val
 		val_type  = mmbr_req.val_type # string by default "str"
-		"""
-		a="full_name"
-		b="xx"
-		ty = "str"
-		"""
+		
 		#mmbr.key = val (key is str)
 		exec(f"mmbr.{key}={val_type}('{val}')") # field name from db must match exactly
 		
