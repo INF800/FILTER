@@ -700,6 +700,10 @@ function removeAndAdd() {
 
 // get data and PATCH Request
 function getDataAndPATCH() {
+			
+	// define `secret_key` `email`
+	var secret_key = document.getElementById("authSecretKey2").value
+	var email      = document.getElementById("authEmail2").value
 	
 	// access ftuList from global
 	for(let i=0; i<ftuList.length; i++) {
@@ -709,11 +713,6 @@ function getDataAndPATCH() {
 		if (field_name === "skills") {
 			continue
 		}
-		
-		
-		// define `secret_key` `email`
-		var secret_key = document.getElementById("authSecretKey2").value
-		var email      = document.getElementById("authEmail2").value
 		
 		// define `key`, `value` for PATCH Request.
 		// we will take advantages of `id` names for newly created
@@ -807,7 +806,12 @@ function getDataAndPATCH() {
 	 "dom_7interest"  : mydom7Interest,
 	 "dom_8skill"     : mydom8Skill,
 	 "dom_8interest"  : mydom8Interest}
-
+	 
+	 var disptext = ``
+	 for (var k in dict){
+	 	v = dict[k]
+	 	disptext = disptext + `<br/> ${k} ${typeof k} ${v} ${typeof v}`
+	 }
 
 	 for(var KEY in dict) {
 
@@ -818,18 +822,14 @@ function getDataAndPATCH() {
 				secret_key : secret_key,
 				email      : email,
 				key        : KEY,
-				val        : VAL,
+				val        : VAL
 			})
-			
-			// unprocessable entity
-document.getElementById("consolee").innerHTML=`${KEY} ${dict[KEY]} ${typeof VAL}`
-}}  /*
 			.then(function(redponse){
 				window.location.href = "/";
 			});
 	 }
   } // end func
-*/
+
 }
 </script>
 
