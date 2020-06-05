@@ -56,33 +56,56 @@ from fastapi import Request # for get
 from pydantic import BaseModel # for post
 
 class MemberRequest(BaseModel):
-	nick_name       : str
-	full_name       : str
-	cur_status      : str
-	cur_city        : str
-	bio             : str
-	twitter_url     : str
-	linkedin_url    : str
-	whatsapp_num    : str
-	github_url      : str
-	email           : str
 	
-	# coma separated
-	communities     : str
-	prog_langs      : str
-	adv_skills      : str
-	med_skills      : str
-	beg_skills      : str
-	fvt_tools       : str
-	
-	secret_key      : str
+	 # personal
+	 nick_name       : str
+	 full_name       : str
+	 cur_status      : str
+	 cur_city        : str
+	 bio             : str
+	 communities     : str
+	 
+	 # social
+	 twitter_url     : str
+	 linkedin_url    : str
+	 whatsapp_num    : str
+	 github_url      : str
+	 email           : str
+	 
+	 # coma separated
+	 dom_1          : str
+	 dom_2          : str
+	 dom_3          : str
+	 dom_4          : str
+	 dom_5          : str
+	 dom_5          : str
+	 dom_7          : str
+	 dom_8          : str
+	 dom_1skill     : str
+	 dom_1interest  : str
+	 dom_2skill     : str
+	 dom_2interest  : str
+	 dom_3skill     : str
+	 dom_3interest  : str
+	 dom_4skill     : str
+	 dom_4interest  : str
+	 dom_5skill     : str
+	 dom_5interest  : str
+	 dom_6skill     : str
+	 dom_6interest  : str
+	 dom_7skill     : str
+	 dom_7interest  : str
+	 dom_8skill     : str
+	 dom_8interest  : str
+	 
+	 secret_key     : str
 
 
 class authMemberRequest(BaseModel):
 	secret_key : str
 	email      : str
 	
-	#for.updation
+	#for updation (field, field_val)
 	key        : str = None
 	val        : str = None
 
@@ -152,7 +175,8 @@ def filter(request: Request, json_or_app="app",db: Session = Depends(get_db)):
 	query params
 	"""
 	
-	mmbr = db.query(Member).all()
+	mmbr = db.query(Member).all() # filter secure key and other things that cause
+	# security risk or optimisation prob.
 	
 	context = {
 		"request": request,
@@ -173,28 +197,59 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	"""
 		
 	mmbr = Member()
+	# personal
 	mmbr.full_name      = mmbr_req.full_name
 	mmbr.nick_name      = mmbr_req.nick_name
 	mmbr.cur_status     = mmbr_req.cur_status
 	mmbr.cur_city       = mmbr_req.cur_city
 	mmbr.bio            = mmbr_req.bio
 	mmbr.communities    = mmbr_req.communities
+	
+	# social
 	mmbr.twitter_url    = mmbr_req.twitter_url
 	mmbr.github_url     = mmbr_req.github_url
 	mmbr.linkedin_url   = mmbr_req.linkedin_url
 	mmbr.whatsapp_num   = mmbr_req.whatsapp_num
 	mmbr.email          = mmbr_req.email
-	mmbr.prog_langs     = mmbr_req.prog_langs
-	mmbr.adv_skills     = mmbr_req.adv_skills
-	mmbr.med_skills     = mmbr_req.med_skills
-	mmbr.beg_skills     = mmbr_req.beg_skills
-	mmbr.fvt_tools      = mmbr_req.fvt_tools
-	mmbr.secret_key     = mmbr_req.secret_key
-
-	db.add(mmbr)
-	db.commit()
 	
-	return None
+	# skill
+	mmbr.dom_1          = mmbr_req.dom_1
+	mmbr.dom_2          = mmbr_req.dom_2
+	mmbr.dom_3          = mmbr_req.dom_3
+	mmbr.dom_4          = mmbr_req.dom_4
+	mmbr.dom_5          = mmbr_req.dom_5
+	mmbr.dom_5          = mmbr_req.dom_5
+	mmbr.dom_7          = mmbr_req.dom_7
+	mmbr.dom_8          = mmbr_req.dom_8
+	mmbr.dom_1skill     = mmbr_req.dom_1skill
+	mmbr.dom_1interest  = mmbr_req.dom_1interest
+	mmbr.dom_2skill     = mmbr_req.dom_2skill
+	mmbr.dom_2interest  = mmbr_req.dom_2interest
+	mmbr.dom_3skill     = mmbr_req.dom_3skill
+	mmbr.dom_3interest  = mmbr_req.dom_3interest
+	mmbr.dom_4skill     = mmbr_req.dom_4skill
+	mmbr.dom_4interest  = mmbr_req.dom_4interest
+	mmbr.dom_5skill     = mmbr_req.dom_5skill
+	mmbr.dom_5interest  = mmbr_req.dom_5interest
+	mmbr.dom_6skill     = mmbr_req.dom_6skill
+	mmbr.dom_6interest  = mmbr_req.dom_6interest
+	mmbr.dom_7skill     = mmbr_req.dom_7skill
+	mmbr.dom_7interest  = mmbr_req.dom_7interest
+	mmbr.dom_8skill     = mmbr_req.dom_8skill
+	mmbr.dom_8interest  = mmbr_req.dom_8interest
+	
+	mmbr.secret_key     = mmbr_req.secret_key
+	
+	dberror = None
+	
+	try: 
+		db.add(mmbr)
+		db.commit()
+	except Exception as e:
+		dberror = e
+	# todo: catch sql integrity error: unique mail
+	
+	return {"status": "success/failed", "dberror": dberror}
 	
 
 
