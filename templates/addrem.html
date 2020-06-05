@@ -92,7 +92,8 @@
 
 
   <h5 style="padding-top: 8%; padding-bottom: 4%">Interests In Domains and Your Actual Skills In It</h5>
-  
+ 
+<div id="SKILLS">
   <div class="row"> 
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. Data Science" id="mydom1"> </select>
@@ -268,7 +269,7 @@
     <em id="skillLabel8" style="font-style: Monospace;">0</em>
   	</div>
   </div>
-  
+</div>
 <script>
 	// add options to multiple select (LIST WILL BE USED FOR UPATING TOO)
 	var fullCommunitiesList = `
@@ -578,13 +579,14 @@
 			<option value="whatsapp_num">WhatsApp Number</option>
 			<option value="github_url">GitHub URL</option>
 			<option value="email">Email</option>
-			<option value="communities">Communities</option>
-			<option value="prog_langs">Prog_langs</option>
-			<option value="adv_skills">Skills - Advanced</option>
-			<option value="med_skills">Skills - Intermediate</option>
-			<option value="beg_skills">Skills - Beginner</option>
-			<option value="fvt_tools">Tools of Choice</option>
 			<option value="secret_key">Secret Key</option>
+			
+			
+			<option value="communities">Communities</option>
+			
+			
+			<option value="skills">Skills</option>
+			
 		</select>
 		
 		<div id="fields-add">
@@ -592,6 +594,8 @@
 		</div>
 		
 		<input id="startUpdating" type="button" onclick="removeAndAdd()" value="Start Updating">
+
+    <div id="consolee"></div>
 </div>
 
 
@@ -599,20 +603,22 @@
 
 // global
 var ftuList = []
-var optionFields = ["cur_status", "cur_city", "communities", "prog_langs", "adv_skills", "med_skills", "beg_skills"]
+var textFields = [
+	"full_name", "nick_name", "bio", "twitter_url", "linkedin_url", "github_url", 
+	"whatsapp_num", "email", "secret_key"]
+var optFields = ["cur_status", "cur_city", "communities"]
 var singleOptFields = ["cur_status", "cur_city"]
-var strFields = ["full_name", "nick_name", "bio", "twitter_url", "linkedin_url", "github_url", "whatsapp_num", "email", "fvt_tools", "secret_key"]
 
 function removeAndAdd() {
 
 	// add:
-  // get list of fields
+  // get list of fields to Update
   var multiSelect   = document.getElementById("ftuOptions")
   for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
 		ftuList.push(multiSelect.selectedOptions[i].value)
 	}
 	
-	// add label and input / multiselect fields
+	// add id and input / multiselect fields
 	// depending on `field` type
 	/*
 	// made global
@@ -625,11 +631,11 @@ function removeAndAdd() {
 		field_name = ftuList[i]
 		var fieldsAdd = document.getElementById("fields-add")
 		
-		// str fields with onky <labe> and <input>
-		if (strFields.includes(field_name)) {
+		// str fields with onky <id> and <input>
+		if (textFields.includes(field_name)) {
 			
 			var newLabel = document.createElement('label')
-			newLabel.innerHTML = "Update " + field_name.replace("_", " ")
+			newLabel.innerHTML = "UPDATE " + field_name.replace("_", " ").toUpperCase()
 			fieldsAdd.appendChild(newLabel)
 			
 			var newInput = document.createElement('input')
@@ -639,16 +645,17 @@ function removeAndAdd() {
 			fieldsAdd.appendChild(newInput)
 			
 			
-		} else if (optionFields.includes(field_name)) {
+		} else if (optFields.includes(field_name)) {
 			
 			var newLabel = document.createElement('label')
-			newLabel.innerHTML = "Update " + field_name.replace("_", " ")
+			newLabel.innerHTML = "UPDATE " + field_name.replace("_", " ").toUpperCase()
 			fieldsAdd.appendChild(newLabel)
-			
+			  
 			// add multiple/single options
 			var newSelect = document.createElement("select")
 			newSelect.id = field_name
 			newSelect.classList.add('u-full-width')
+			// DETRMINE SINGLE OR MULTIPLE IN LOOP
 			if (!singleOptFields.includes(field_name)) {
 				newSelect.multiple = true
 			}
@@ -658,57 +665,28 @@ function removeAndAdd() {
         <option value="Working">Working</option>
         <option value="Student">Student</option>
         `
+			} else if (field_name == "cur_city") {
+				newSelect.innerHTML = citiesList
+			} else if (field_name === "communities") {
+				newSelect.innerHTML = fullCommunitiesList
 			}
-			
-			if (field_name == "cur_city") {
-				newSelect.innerHTML = `
-        <option value="Chennai">Chennai</option>
-        <option value="Bangalore">Bangalore</option>
-				`
-			}
-			
-			if (field_name === "communities") {
-				newSelect.innerHTML = `
-  	<option value="ChennaiJS">ChennaiJS</option>
-  	<option value="TFJS">TFJS Dev</option>
-  	<option value="Dev Army">Dev Army</option>
-				`
-			}
-			
-			if (field_name === "prog_langs") {
-				newSelect.innerHTML = `
-      <option value="Python">Python</option>
-      <option value="Javascript">Javascript</option>
-      <option value="Java">Java</option>
-      <option value="C++">C++</option>
-      <option value="C">C</option>
-      <option value="Swift">Swift</option>
-				`
-			}
-			
-			if ((field_name === "adv_skills") || (field_name==="beg_skills") || (field_name==="med_skills")) {
-				newSelect.innerHTML = `
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-				`
-			}
-			
 			fieldsAdd.appendChild(newSelect)
 		}
-		
 	}
 	
+	// skills
+	if (ftuList.includes("skills")) {
+		// copy div and (remove after use? Doesnt matter. both point to same)
+		var SKILLS = document.getElementById('SKILLS')
+		var fieldsAdd = document.getElementById('fields-add')
+		/*
+		clone = SKILLS.cloneNode(true); // interestLabels and skillLabels not working
+		clone.id = "update-skills";
+		fieldsAdd.appendChild(clone)
+		*/
+		fieldsAdd.appendChild(SKILLS)
+	}
+
 	// remove: fieldsToUpdate label and options
 	document.getElementById("ftuLabel").outerHTML = "";
 	document.getElementById("ftuOptions").outerHTML = "";
@@ -720,8 +698,6 @@ function removeAndAdd() {
 	fieldsAdd.appendChild(updateButton)
 }
 
-
-
 // get data and PATCH Request
 function getDataAndPATCH() {
 	
@@ -729,6 +705,10 @@ function getDataAndPATCH() {
 	for(let i=0; i<ftuList.length; i++) {
 		
 		field_name = ftuList[i]
+		
+		if (field_name === "skills") {
+			continue
+		}
 		
 		
 		// define `secret_key` `email`
@@ -741,7 +721,7 @@ function getDataAndPATCH() {
 		var key   = field_name
 		// value - for multiple select options, use loop
 		var val = ""
-		if (strFields.includes(field_name) || singleOptFields.includes(field_name)) {
+		if (textFields.includes(field_name) || singleOptFields.includes(field_name)) {
 			val = document.getElementById(field_name).value
 		} else {
 			// use loop to get the items and convert them to str.
@@ -755,6 +735,8 @@ function getDataAndPATCH() {
 			val = valList.toString()
 		}
 		
+		
+		
 		// PATCH
 		axios
 			.patch('/api/member', {
@@ -767,8 +749,87 @@ function getDataAndPATCH() {
 				window.location.href = "/";
 			});
 			
+			
 	}
+
+
+	// patch for SKILLS
+	if (ftuList.includes("skills")){
+		
+	  var mydom1         = document.getElementById("mydom1").value
+	  var mydom1Skill    = document.getElementById("skillLabel1").innerHTML
+		var mydom1Interest = document.getElementById("interestLabel1").innerHTML
+		var mydom2         = document.getElementById("mydom2").value
+		var mydom2Skill    = document.getElementById("skillLabel2").innerHTML
+		var mydom2Interest = document.getElementById("interestLabel2").innerHTML
+		var mydom3         = document.getElementById("mydom3").value
+		var mydom3Skill    = document.getElementById("skillLabel3").innerHTML
+		var mydom3Interest = document.getElementById("interestLabel3").innerHTML
+		var mydom4         = document.getElementById("mydom4").value
+		var mydom4Skill    = document.getElementById("skillLabel4").innerHTML
+		var mydom4Interest = document.getElementById("interestLabel4").innerHTML
+		var mydom5         = document.getElementById("mydom5").value
+		var mydom5Skill    = document.getElementById("skillLabel5").innerHTML
+		var mydom5Interest = document.getElementById("interestLabel5").innerHTML
+		var mydom6         = document.getElementById("mydom6").value
+		var mydom6Skill    = document.getElementById("skillLabel6").innerHTML
+		var mydom6Interest = document.getElementById("interestLabel6").innerHTML
+		var mydom7         = document.getElementById("mydom7").value
+		var mydom7Skill    = document.getElementById("skillLabel7").innerHTML
+		var mydom7Interest = document.getElementById("interestLabel7").innerHTML
+		var mydom8         = document.getElementById("mydom8").value
+		var mydom8Skill    = document.getElementById("skillLabel8").innerHTML
+		var mydom8Interest = document.getElementById("interestLabel8").innerHTML
 	
+			
+		var dict = {
+	 "dom_1"          :mydom1,
+	 "dom_2"         : mydom2,
+	 "dom_3"          : mydom3,
+	 "dom_4"          : mydom4,
+	 "dom_5"          : mydom5,
+	 "dom_6"          : mydom6,
+	 "dom_7"          : mydom7,
+	 "dom_8"          : mydom8,
+	 "dom_1skill"     : mydom1Skill,
+	 "dom_1interest"  : mydom1Interest,
+	 "dom_2skill"     : mydom2Skill,
+	 "dom_2interest"  : mydom2Interest,
+	 "dom_3skill"     : mydom3Skill,
+	 "dom_3interest"  : mydom3Interest,
+	 "dom_4skill"     : mydom4Skill,
+	 "dom_4interest"  : mydom4Interest,
+	 "dom_5skill"     : mydom5Skill,
+	 "dom_5interest"  : mydom5Interest,
+	 "dom_6skill"     : mydom6Skill,
+	 "dom_6interest"  : mydom6Interest,
+	 "dom_7skill"     : mydom7Skill,
+	 "dom_7interest"  : mydom7Interest,
+	 "dom_8skill"     : mydom8Skill,
+	 "dom_8interest"  : mydom8Interest}
+
+
+	 for(var KEY in dict) {
+
+
+
+	 	var VAL = dict[KEY];
+			axios.patch('/api/member', {
+				secret_key : secret_key,
+				email      : email,
+				key        : KEY,
+				val        : VAL,
+			})
+			
+			// unprocessable entity
+document.getElementById("consolee").innerHTML=`${KEY} ${dict[KEY]} ${typeof VAL}`
+}}  /*
+			.then(function(redponse){
+				window.location.href = "/";
+			});
+	 }
+  } // end func
+*/
 }
 </script>
 
