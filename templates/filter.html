@@ -95,9 +95,10 @@
 
 .bio {
 	font-style: italic;
-	font-size: 80%;
-	font-weight: 400;
-	color: rgba(0,0,0,.9);
+	font-size: 90%;
+	font-weight: 401;
+	color: rgba(0,0,0,.8);
+	padding-top: 4%;
 }
 
 .social {
@@ -134,6 +135,60 @@ section {
 <!-- cards page -->
 <div class="card-container">
 	
+
+<script>
+// plot skills radar dynamically (helps for loop)
+function plotSkillsRadar(canvasId, labelsList, interestDataList, skillDataList)
+{
+var ctx = document.getElementById(canvasId);
+
+var data = {
+    labels: labelsList, //["Website Design", "UX Design", "Marketing", "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
+    datasets: [
+        {
+            label: "Interest",
+            backgroundColor: "rgba(43,176,212,.4)", //blue
+            borderColor: "rgba(43,176,212,.6)",
+            pointBackgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor: "rgba(0,0,0,0)",
+            data: interestDataList //[100, 70, 85, 90, 95, 75, 90, 100]
+        },
+        {
+            label: "Relative Skill", // green
+            backgroundColor: "rgba(140,200,50,.4)",
+            borderColor: "rgba(140,200,50,.6)",
+            pointBackgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor: "rgba(0,0,0,0)",
+            data: skillDataList //[85, 75, 70, 80, 85, 60, 75, 50]
+        }
+    ]
+};
+
+var options = {
+	legend: {
+            labels: {
+                fontColor: "{{"rgba(0,0,0,.8)"}}",//"rgba(0,0,0,.8)",
+            }
+        },
+	scale: { 
+		angleLines: { color: 'rgba(0,0,0,.5)' },
+		gridLines: { color: 'rgba(0,0,0,.3)' },
+		pointLabels: {fontColor: 'rgba(0,0,0,.7)'},
+		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(0,0,0,.88)'}
+		
+	}
+}
+
+new Chart(ctx, {
+	'type':'radar',
+	'data': data, 
+	options: options
+});
+
+} // end function plotSkillsRadar
+</script>
+
+
 	
 {% for member in members %}
 <section class="card-wrapper">
@@ -191,56 +246,14 @@ section {
 
 
 <script>
-// for skills graph
-// need to be made dynamic
-var ctx = document.getElementById("{{member.id}}");
-
-var data = {
-    labels: ["Website Design", "UX Design", "Marketing", "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
-    datasets: [
-        {
-            label: "Interest",
-            backgroundColor: "rgba(43,176,212,.4)", //blue
-            borderColor: "rgba(43,176,212,.6)",
-            pointBackgroundColor: "rgba(0,0,0,0)",
-            pointBorderColor: "rgba(0,0,0,0)",
-            data: [100, 70, 85, 90, 95, 75, 90, 100]
-        },
-        {
-            label: "Relative Skill", // green
-            backgroundColor: "rgba(140,200,50,.4)",
-            borderColor: "rgba(140,200,50,.6)",
-            pointBackgroundColor: "rgba(0,0,0,0)",
-            pointBorderColor: "rgba(0,0,0,0)",
-            data: [85, 75, 70, 80, 85, 60, 75, 50]
-        }
-    ]
-};
-
-var options = {
-	legend: {
-            labels: {
-                fontColor: "{{"rgba(0,0,0,.8)"}}",//"rgba(0,0,0,.8)",
-            }
-        },
-	scale: { 
-		angleLines: { color: 'rgba(0,0,0,.5)' },
-		gridLines: { color: 'rgba(0,0,0,.3)' },
-		pointLabels: {fontColor: 'rgba(0,0,0,.7)'},
-		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(0,0,0,.88)'}
-		
-	}
-}
-
-new Chart(ctx, {
-	'type':'radar',
-	'data': data, 
-	options: options
-});
-
+plotSkillsRadar(
+		canvasId="{{member.id}}",
+		labelsList=["Website Design", "UX Design"] ,// "Marketing", "Javascript", "HTML & CSS", "Ruby on Rails", "Tech Demos", "Leading Teams"],
+		InterestDataList=[100, 70], //85, 90, 95, 75, 90, 100],
+		skillDataList=[85, 75] //70, 80, 85, 60, 75, 50]
+);
 </script>
 {% endfor %}
-
 
 
 

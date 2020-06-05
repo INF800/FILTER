@@ -5,11 +5,17 @@
 <style>
 .notice-yellow {
 	font-size: 56%; 
-	margin-bottom: 7%; 
-	color: #2e3436; 
-	background-color:#ffb952; 
-	border: 1px solid #ffb952; 
+	font-weight: 500;
+	margin-bottom: 7%;
+	color: rgba(250,250,250,.8);
+	/*background-color:#ffb952; 
+	border: 1px solid #ffb952;*/ 
 	border-radius: 3px;">
+}
+
+::-webkit-resizer {
+	display: none;
+	background: rgba(200,200,200,.8);
 }
 </style>
 
@@ -54,108 +60,187 @@
   <div class="row">
   <div class="twelve columns">
   <label>Bio</label>
-  <textarea class="u-full-width" placeholder="Drag lower right corner to expand text box... tell about yourself" id="mybio"></textarea>
+  <textarea class="u-full-width" style="height: 170px" placeholder="Drag lower right corner to expand text box... tell more about yourself" id="mybio"></textarea>
   </div>
   </div>
-  
+
   <!-- new -->
   <h5>Interests In Domains and Your Actual Skills In It</h5>
-  <div class="notice-yellow">
-  	<b>Note:</b> First slider is for indicating level of <b>Interest</b> and second slider is for <b>Relative Skill</b>
-  </div>
   
-  <div class="row">
+  <div class="row"> 
   	<div class="four columns">
-  		<label>Select Domain</label>
+  		<!-- label>Select Domain</label -->
   		<select class="u-full-width" type="text" placeholder="eg. Data Science" id="mydom1"> </select>
   	</div>
   	<div class="four columns">
-  		<label>Interest</label>
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom1Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel1').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel1" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<label>Relative Skill</label>
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom1Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel1').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel1" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. DSA" id="mydom2"></select>
   	</div>
   	<div class="four columns">
-  		<div class="notice-yellow" style="margin-bottom: 0.5%">
-  			Hello
-  		</div>
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom2Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel2').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel2" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom2Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel2').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel2" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. Big Data" id="mydom3"></select>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom3Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel3').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel3" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom3Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel3').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel3" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. Full Stack" id="mydom4"></select>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom4Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel4').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel4" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom4Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel4').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel4" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. UI/UX" id="mydom5"> </select>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom5Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel5').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel5" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom5Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel5').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel5" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. Android or iOS or Cross Platform" id="mydom6"> </select>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom6Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel6').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel6" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom6Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel6').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel6" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. C++ or Python or Javascript" id="mydom7"></select>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom7Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel7').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel7" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom7Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel7').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel7" style="font-style: Monospace;">0</em>
   	</div>
   </div>
+  
   <div class="row">
   	<div class="four columns">
   		<select class="u-full-width" type="text" placeholder="eg. Marketing" id="mydom8"> </select>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max="100" value="20" id="mydom8Interest">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel8').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel8" style="font-style: Monospace;">0</em>
   	</div>
   	<div class="four columns">
-  		<input class="u-full-width" type="range" min="0" max=100"" value="20" id="mydom8Skill">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel8').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel8" style="font-style: Monospace;">0</em>
   	</div>
   </div>
   
@@ -280,7 +365,7 @@
   	
   	<div class="eight columns">
   		<label>Email</label>
-  		<div class="notice-yellow"style="margin-bottom: 0.5%" >
+  		<div class="notice-yellow"style="margin-bottom: 0%; color:#ffb952;" >
   			Please remember entered email. Will be used later.
   		</div>
       <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="myemail">
@@ -294,7 +379,7 @@
   <div class="row">
   <div class="twelve columns">
   <label>Create your secret key</label>
-  <div class="notice-yellow"style="margin-bottom: 0.5%" >
+  <div class="notice-yellow"style="margin-bottom: 0%; color:#ffb952" >
   			Please remember entered key. Will be used later.
   </div>
   <input class="u-full-width" type="text" placeholder="secret key (strong and easy to remeber)" id="secretKey">
