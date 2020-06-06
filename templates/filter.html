@@ -74,20 +74,14 @@
 
 /* For Elements insode card */
 
-.full-name {
-	font-size: 120%;
-	color: rgba(255,0,0,.6);
-	font-weight: 401;
-	height: 26px; /* decreasing ht. */
-}
-
 .skills {
 	  height: 270px; </* incrase/decr me to increse/decr ht. of card */
 }
 
 .city {
-	font-size: 75%;
+	font-size: 105%;
 	color: rgba(255,255,255,0.6);
+	margin-top: 0%;
 }
 
 .communities {
@@ -198,13 +192,14 @@ new Chart(ctx, {
 			
 			<div class="row">
 				<div class="six columns">
-					<p class="u-full-width full-name">
-						{{ member.full_name }} <br />
-						<span class="city">
+					
+					<h4 style="color: rgba(255,255,255,.8)">{{member.full_name}}</h4>
+					
+						<div class="city">
 							{{ member.cur_city }}
-						</span>
-					</p>
-					<div class="row">
+						</div>
+					
+					<div class="row" >
 							<div class="twelve columns">
 								<span class="communities">
 									{% set comms = member.communities.split(',') %}
@@ -214,6 +209,7 @@ new Chart(ctx, {
 								</span>
 							</div>
 					</div>
+					
 					<div class="row">
 						<div class="twelve columns bio">
 							❝ {{ member.bio }}

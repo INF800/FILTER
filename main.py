@@ -160,10 +160,42 @@ def dashboard(request: Request, json_or_app="app", db: Session = Depends(get_db)
 	print(col_names)
 	
 	# number of people vs skills - interested, skilled
-	# nop vs loc
-	# piechart - working vs stud
-	# nop vs dev communities
+	"""
+	# double line graph
 	
+	# xaxis -skills
+	# yaxis -n_ppl
+	# lines - interested,n actual skill
+	"""
+	
+	# nop vs loc
+	"""
+	# piechart
+	"""
+	
+	# piechart - working vs stud
+	"""
+	# dougnut
+	"""
+	
+	# nop vs dev vs others communities
+	"""
+	horizonta graph
+	
+	yaxis -communities
+	xaxis -nop
+	bars -students, working, other, top2 major domains
+	"""
+	
+	#skilled/Total Members Ratio (In filter)
+	"""
+	x-axis domain
+	yaxis ratio
+	"""
+	
+	# domain wise
+	"""
+	"""
 	
 	context = {
 		"request": request,
