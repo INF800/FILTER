@@ -120,7 +120,7 @@ class authMemberRequest(BaseModel):
 @app.get("/")
 def home(request: Request):
 	"""
-	dashboard / add+remove / filter
+	Render simple UI for home.
 	"""
 	
 	context = {
@@ -132,9 +132,12 @@ def home(request: Request):
 
 
 @app.get("/form")
-def add_or_remove_members(request: Request):
+def add_patch_remove_members(request: Request):
 	"""
-	form to add/remove members
+	Render a form through which user can interact
+	with the API.
+	It uses Axios and performs POST, DELETE and PATCH
+	operations using clientside js
 	"""
 	context = {
 		"request": request
@@ -147,9 +150,17 @@ def add_or_remove_members(request: Request):
 @app.get("/api/dashboard/{json_or_app}")
 def dashboard(request: Request, json_or_app="app", db: Session = Depends(get_db)):
 	"""
-	Display summary details of members
+	Display summary details of the whole platform and 
+	the enlisted Members.
 	
-	returns either temate or json based on query params
+	Query parameter `json_or_app` supports one of either two values - `json`
+	or `app`
+	
+	- `/api/dashboard/app` renders UI 
+	- `/api/dashboard/json` returns JSON response payload
+	with key stats which can be used by any client to visualize
+	
+	ChartJS is used in this UI to visualize stats.
 	"""
 	
 	stats = None
@@ -210,25 +221,39 @@ def dashboard(request: Request, json_or_app="app", db: Session = Depends(get_db)
 
 
 @app.get("/api/filter/{json_or_app}")
-def filter(request: Request, json_or_app="app",db: Session = Depends(get_db)):
+def filter(request: Request, name=None, loc=None, skills=None, status=None ,json_or_app="app",db: Session = Depends(get_db)):
 	"""
-	Explore:
-	Display all member details w/ filtering.
+	Display/GET all members or filtered members based on query params.
 	
-	return either html template or json based on 
-	query params
+	- `/api/filter/json` return JSON response of all members or filtered
+	- `/api/filter/app` retnders UI
+	
 	"""
 	
-	mmbr = db.query(Member).all() # filter secure key and other things that cause
-	# security risk or optimisation prob.
-	
+	if json_or_app == "app":
+		mmbr = db.query(Member)
+		
+		if name:
+			mmbr = mmbr.filter(Member.full_name==name)
+		if loc:
+			mmbr = mmbr.filter(Member.cur_city==loc)
+		# todo skills
+		if status:
+			mmbr = mmbr.filter(Member.cur_status==status)
+		
 	context = {
 		"request": request,
-		"members": mmbr
+		"members": mmbr,
+		
+		"name"   : name,
+		"loc"    : loc,
+		"status" : status
 	}
 	
 	# template / json
 	if json_or_app == "json":
+		mmbr = db.query(Member).all()# filter secure key and other things that cause
+		# security risk or optimisation probs
 		return {"payload": mmbr}
 	return templates.TemplateResponse("filter.html", context)
 
@@ -237,7 +262,8 @@ def filter(request: Request, json_or_app="app",db: Session = Depends(get_db)):
 @app.post("/api/member")
 def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	"""
-	adds user details to db
+	Adds new Member to database via API.
+	Email must be unique
 	"""
 		
 	mmbr = Member()
@@ -263,6 +289,7 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 	mmbr.dom_4          = mmbr_req.dom_4
 	mmbr.dom_5          = mmbr_req.dom_5
 	mmbr.dom_5          = mmbr_req.dom_5
+	mmbr.dom_6          = mmbr_req.dom_6
 	mmbr.dom_7          = mmbr_req.dom_7
 	mmbr.dom_8          = mmbr_req.dom_8
 	mmbr.dom_1skill     = mmbr_req.dom_1skill
@@ -300,7 +327,8 @@ def add_members(mmbr_req: MemberRequest, db: Session = Depends(get_db)):
 @app.delete("/api/member")
 def remove_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 	"""
-	Remove entry wrt `secretkey` & `full name` from db
+	Remove entry wrt `secretkey` & **unique** `email` from database
+	via API
 	"""
 	
 	secret_key = mmbr_req.secret_key
@@ -322,7 +350,7 @@ def remove_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 @app.patch("/api/member")
 def update_members(mmbr_req: authMemberRequest, db: Session = Depends(get_db)):
 	"""
-	alter values for an entry after verification
+	Alter values for an entry after verification via API
 	"""
 	
 	secret_key = mmbr_req.secret_key

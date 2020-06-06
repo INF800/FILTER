@@ -47,6 +47,7 @@
       <select class="u-full-width" id="curStatus">
         <option value="Working">Working</option>
         <option value="Student">Student</option>
+        <option value="Other">Other</option>
       </select>
       
       <label>Location</label>
@@ -274,19 +275,19 @@
 	// add options to multiple select (LIST WILL BE USED FOR UPATING TOO)
 	var fullCommunitiesList = `
 	  		  <option value="None">None</option>
-  		  	<option value="ChennaiJS">ChennaiJS</option>
-  		  	<option value="TFJS">TFJS Dev</option>
-  		  	<option value="Dev Army">Dev Army</option>
-  		  	<option value="Etierity">Etierity</option>
+  		  	<option value="Tag 1">Community 1</option>
+  		  	<option value="Tag 2">Community 2</option>
+  		  	<option value="Tag 3">Community 3</option>
+  		  	<option value="Tag 4">Community 4</option>
 	`;
 	document.getElementById("mycommunities").innerHTML = fullCommunitiesList;
 	
 	var citiesList = `
 	        <option value="None">None</option>
-	        <option value="CHN">Chennai</option>
-	        <option value="BGLR">Bangalore</option>
-	        <option value"HYD">Hyderabad</option>
-	        <option value="MBY">Mumbai</option>
+	        <option value="Chennai">Chennai</option>
+	        <option value="Banglore">Bangalore</option>
+	        <option value"Hyderabad">Hyderabad</option>
+	        <option value="Mumbai">Mumbai</option>
 	        <option value="Pune">Pune</option>
 	`;
 	document.getElementById("curLoc").innerHTML = citiesList
@@ -513,7 +514,9 @@
 	    dom_8skill     :  mydom8Skill,
 	    dom_8interest  : mydom8Interest
 	  }
-	  );
+	  ).then(function(response){
+	  	//window.location.href="/"
+	  });
 	}
 
 </script>
@@ -571,7 +574,7 @@
 		<select id="ftuOptions" class="u-full-width" multiple id="fieldsToUpdate">
 			<option value="full_name">Full Name</option>
 			<option value="nick_name">Preferred Name</option>
-			<option value="cur_status">Working / Student</option>
+			<option value="cur_status">Working/Student/Other</option>
 			<option value="cur_city">Curent City</option>
 			<option value="bio">Bio</option>
 			<option value="twitter_url">Twitter URL</option>
@@ -664,6 +667,7 @@ function removeAndAdd() {
 				newSelect.innerHTML = `
         <option value="Working">Working</option>
         <option value="Student">Student</option>
+        <option value="Other">Other</option>
         `
 			} else if (field_name == "cur_city") {
 				newSelect.innerHTML = citiesList
