@@ -29,8 +29,8 @@ Thanks for showing your support by visiting this page!
 Please feel free to cantact the author or existing contributors. 
 Project is so much in development.
 
-- [Main Author](https://rakesh4real.github.io/)
-- [Contributors](github/contributors.txt)
+- [See existing issues you can solve](https://github.com/rakesh4real/FILTER/issues/7)
+- Conatct [main author](https://rakesh4real.github.io/) or [existing contributors](github/contributors.txt)
 
 ## License
 
