@@ -10,6 +10,7 @@
     already seeking you!
 ```
 
+**open-sourced on 7th July 2020** <br/>
 More details about the project will be added soon.
 Thanks for showing your support by visiting this page!
 
@@ -26,7 +27,7 @@ Thanks for showing your support by visiting this page!
 
 ## How to contribue
 
-Please feel free to cantact the author or existing contributors. 
+Please feel free to contact the author or existing contributors. 
 Project is so much in development.
 
 - [See existing issues you can solve](https://github.com/rakesh4real/FILTER/issues/7)
