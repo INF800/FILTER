@@ -1,5 +1,363 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>dashboard</h1>
+
+<style>
+.main-block {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	padding-top: 5%;
+}
+
+/* Card */
+section {
+	/* place it inside a container */
+  background: #181818;
+  border: 1px solid #181818;
+  padding-top:1%;
+  color: rgba(255,255,255,0.6);
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.row {/*
+	background-color: black;
+	border: 1px solid white;*/
+}
+
+
+/* People vs Dains Line Graph */
+
+.domain-people {
+	background-color: #181818;
+}
+
+</style>
+
+<div class="main-block">
+	
+	<h1>Dashboard</h1>
+	
+	<div class="row">
+		<div class="twelve columns">
+			<section>
+			<h4>Tech Count</h5>
+				<canvas id="myChart" class="domain-people"></canvas>
+			</section>
+		</div>
+	</div>
+
+
+<style>
+/* cards */
+.container {
+	width: 100%;
+	padding: 0%;
+}
+.row {
+	color: 1 px solid white;
+}
+.columns {
+	color: 1px solid blue;
+}
+
+/* loc graphs */
+.card-container {
+	height: 350px; /* incr or dcr this to manipukate card sizr */
+	width: 100%;
+	margin-top: 5%;
+}
+
+.card-container-2 {
+	height: 500px; /* incr or dcr this to manipukate card sizr */
+	width: 100%;
+	margin-top: 5%;
+}
+
+.coming-soon {
+	padding-top: 40%;
+	color: rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="container">
+
+  <!-- columns should be the immediate child of a .row -->
+  <div class="row">
+    <div class="six columns">
+    	<div class="card-container">
+    		<section>
+    			<h6>Places</h6>
+    			<canvas id="loc-pie" class="loc-pie"></canvas>
+    		</section>
+    	</div>
+    </div>
+    <div class="six columns">
+    	<div class="card-container">
+    		<section>
+    			<h6>Communities</h6>
+    			<canvas id="com-pie" class="com-pie"></canvas>
+    		</section>
+    	</div>
+    </div>
+  </div>
+  <div class="row">
+  	<div class="twelve columns">
+  		<div class="card-container-2">
+  			<section>
+  				<h6>Understand Your Communities</h6>
+  				<canvas id="community-vis"></canvas>
+  			</section>
+  		</div>
+  	</div>
+  </div>
+  <div class="row" style="margin-top: 3%">
+  	<div class="twelve columns">
+  		<div class="eight columns">
+  			<div id="chartdiv" class="card-container-2" style="height: 250px;margin-top: 0%">
+  				<section>
+  					<h6 class="coming-soon">
+  						More Coming Soon
+  					</h6>
+  				</section>
+  			</div>
+  		</div>
+  		<div class="four columns">
+  			<div class="card-container-2" style="height: 250px; margin-top:2%">
+  				<section>
+  					<h6 class="coming-soon">
+  						More Coming Soon
+  					</h6>
+  				</section>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+
+</div>
+
+	
+</div>
+
+<script>
+//start mobile disp
+var cnvs = document.getElementById('myChart')
+
+if ( ( window.innerWidth > 800 ) && ( window.innerHeight > 600)) {
+	cnvs.height = "130" 
+} else {
+	cnvs.height = "270"
+}
+// end check mobile disp
+
+
+	// plot multline
+	// n_ppl vs domains 
+	function plotMultiline() {
+		
+		var ctx = document.getElementById("myChart")
+		
+		var top12Domains = [
+			"Domain1", "Domain2", "Domain3", "Domain4", "Domain5", "Domain6",
+			"Domain7", "Domain8", "Domain9", "Domain10", "Domain11", "Others"]
+		
+		var data ={
+			labels: top12Domains,
+			datasets: [
+				{
+					label: "Skilled/Total Ratio",
+					data: [24, 40, 20, 17, 10, 100, 40, 25, 40, 90, 100, 110],
+					borderColor: "rgba(255,255,255,.1)",
+					pointBackgroundColor: "rgba(255,255,255,.4)",
+					pointBorderColor: "rgba(255,255,255,0)"
+				},
+				{
+					label: "Skilled",
+					data : [10, 20, 30, 40, 100, 160, 200, 25, 40, 150, 100, 110],
+					backgroundColor: "rgba(43,176,212,.4)",
+					borderColor: "rgba(43,176,212,.6)",
+					pointBackgroundColor: "rgba(43, 176, 212,1)",
+					pointBorderColor: "rgba(255,255,255,.4)",
+				},
+				{
+					label: 'Interested',
+					data : [100, 60, 20, 140, 10, 60, 2, 250, 140, 50, 100, 50],
+					backgroundColor: "rgba(140,200,50,.4)",
+					borderColor: "rgba(140,200,50,.6)",
+					pointBackgroundColor: "rgba(140,200,1)",
+					pointBorderColor: "rgba(255,255,255,.4)"
+				}
+				]
+		}
+		
+		options = {
+			scales: {
+				yAxes: [{
+					scaleLabel: {
+						display: true,
+						labelString: 'Num of People',
+						fontSize: 8
+					}
+				}]
+			}    
+		}
+		
+		var myLineChart = new Chart(ctx, {
+			type: 'line',
+			data: data,
+			options: options
+		});
+		
+	}
+	
+	plotMultiline()
+</script>
+
+
+
+<script>
+
+var earthColor = ["#8D9877", "#B09F70", "#776540", "#2A1706", "#A45B3E", "#A09785"]
+var bluedoor = ["#e9dccd", "#e3bab3", "#613a43", "#849974", "#36384c", "#3c413b"]
+var earthColor4 = ["rgba(141,152,119,.7)", "rgba(176,159,112,.7)", "rgba(119,101,.7,.4)", "rgba.72,23,6,.7)", "rgba(164,91,62,.7)", "rgba(160,151,133,.7)"]
+var trEarthColor = ["#668D9877", "#66B09F70", "#66776540", "#662A1706", "#66A45B3E", "#66A09785"]
+
+//pie chart
+function plotLocGraph() {	
+	var topCitiesList = ["City 1", "City 2", "City 3", "City 4", "City 5", "Others"]
+	var cityData = [5, 20, 30, 59, 100, 70]
+	
+	ctx = document.getElementById('loc-pie')
+	
+	if ( ( window.innerWidth > 800 ) && ( window.innerHeight > 600)) {
+		ctx.height = "230" 
+	} else {
+		ctx.height = "330"
+	}
+	
+	data = {
+    datasets: [{
+        data: cityData,
+        backgroundColor: earthColor
+    }],
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: topCitiesList
+};
+	
+	
+	var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: data
+	});
+}
+
+plotLocGraph()
+</script>
+
+
+<script>
+// Pie Chart
+function plotComPie()
+{
+	var topCommunityList = ["Community 1", "Community 2", "Community 3", "Community 4", "Community 5", "Others"]
+	var CommunityData = [5, 20, 30, 59, 100, 70]
+	
+	var ctx = document.getElementById('com-pie')
+	
+	if ( ( window.innerWidth > 800 ) && ( window.innerHeight > 600)) {
+		 ctx.height = "230"
+	} else {
+		ctx.height = "330"
+	}
+	
+	var data = {
+    datasets: [{
+        data: CommunityData,
+        backgroundColor: bluedoor
+    }],
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: topCommunityList
+};
+	
+	
+	var myPieChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: data
+	});
+}
+
+plotComPie()
+</script>
+
+
+<script>
+  // community-vis bar graph
+	function plotCommuniyVis(){
+		
+	var ctx = document.getElementById("community-vis")
+	
+	if  ( ( window.innerWidth > 800 ) && ( window.innerHeight > 600)) {
+		 ctx.height = "170"
+	} else {
+		ctx.height = "500"
+	}
+	
+		
+	var data = {
+    datasets: [
+    	// data: [com1val, com2val, com3val, com4val .. comNval]
+    	{
+    		label: "Working Professionals",
+        data: [7,4,9,2,8],
+        backgroundColor: "rgba(43,176,212,.4)",
+        borderColor: "rgba(43,176,212,1)",
+        borderWidth: 1,
+    	},
+    	{
+    		label: "Students",
+    		data: [8,3,8,4,10],
+    		backgroundColor: "rgba(140,200,50,.4)",
+    		borderWidth: 1,
+    		borderColor: "rgba(140,200,50,1)"
+    	},
+    	{
+    		label: "Least Popular Domain",
+    		data: [9,6,7,3,7],
+    		backgroundColor: "rgba(160,151,133,.4)",
+    		borderColor: "rgba(160,151,133,1)",
+    		borderWidth: 1
+    	},
+    	{
+    		label: "3rd Popular Domain",
+    		data: [8,5,4,2,8],
+    		backgroundColor: "rgba(153, 102, 255, 0.4)",
+    		borderColor: "rgba(153, 102, 255, 1)",
+    		borderWidth: 1
+    	}
+    	],
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: ["Group1", "Group2", "Group3", "Group4", "Group5"]
+		
+	};
+		
+		var myBarChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: data
+});
+		
+	}
+	plotCommuniyVis()
+</script>
+
+
+
+
+
+
+
+
+
 {% endblock %}

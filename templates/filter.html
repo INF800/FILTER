@@ -1,7 +1,296 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Filter</h1>
 
 
+
+<div style="text-align:center;">
+	
+<h3 >Digital Neighbourhood</h3>
+
+<!-- GET Request for filtering -->
+<div id="filterForm" style="display: none">
+<form>
+	<div class="row">
+		<div class="three columns">
+			<label>Full Name</label>
+			<input class="u-full-width" type="text" placeholder="Full Name" name="name" {%if name%}value="{{name}}"{%endif%}>
+		</div>
+		<div class="three columns">
+			<label>Location</label>
+			<select class="u-full-width" multiple name='loc' {%if loc%}value="{{loc}}"{%endif%}>
+				<option value="None">None</option>
+	        <option value="Chennai">Chennai</option>
+	        <option value="Banglore">Bangalore</option>
+	        <option value"Hyderabad">Hyderabad</option>
+	        <option value="Mumbai">Mumbai</option>
+	        <option value="Pune">Pune</option>
+			</select>
+		</div>
+		<div class="three columns">
+			<label>Skills</label>
+			<select class="u-full-width" multiple name='skills'>
+					    <option value="0">None</option>
+	    <option value="DSA">Datastructures & Algorithms</option>
+	    <option value="UI/UX">UI/UX</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Computer Vison">Computer Vision</option>
+      <option value="NLP">NLP</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="UAVs">Drones/UAVs</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Team Lead">Team Lead</option>
+      <option value="Public Speaking">Public Speaking</option>
+      <option value="Writing">Content Writing</option>
+      <option value="Product Demo">Product Demo</option>
+      <option value="Adv Mathethematics">Advanced Mathethematics</option>
+      <option value="C">C</option>
+      <option value="C++">C++</option>
+      <option value="Python">Python</option>
+      <option value="Javascript">Javascript</option>
+      <option value="Swift">Swift</option>
+      <option value="Ruby">Ruby</option>
+      <option value="Java">Java</option>
+			</select>
+		</div>
+		<div class="three columns">
+			<label>Student/Working</label>
+			<select class="u-full-width" name="status">
+				<option value="Working">Working</option>
+				<option value="Student">Student</option>
+				<option value="Other">Other</option>
+			</select>
+		</div>
+	</div>
+	<button type="submit">FILTER</button>
+</form>
+</div>
+
+<input id="filter" onclick="filterForm()" class="button" type="button" value="Toggle Filter">
+
+<script>
+	function filterForm(){
+		document.getElementById("filter").outerHTML = ""
+		document.getElementById("filterForm").style.display = "block"
+	}
+</script>
+
+
+<! -- CARD -->
+<style>
+.card-container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+.card-wrapper {
+	/*border: 1px solid white;*/
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.card {
+	/* auto height */
+}	
+
+.container {
+	padding: 10px 0px 10px 0px;
+	width: 95%;
+}
+
+/* For Elements insode card */
+
+.skills {
+	  height: 270px; </* incrase/decr me to increse/decr ht. of card */
+}
+
+.city {
+	font-size: 105%;
+	color: rgba(255,255,255,0.6);
+	margin-top: 0%;
+}
+
+.communities {
+}
+
+.bio {
+	font-style: italic;
+	font-size: 90%;
+	font-weight: 401;
+	color: rgba(255,255,255,.6);
+	padding-top: 4%;
+}
+
+.social {
+  position: absolute;
+  bottom: 0;
+}
+
+.icon-style {
+	color: #ffb952;
+}
+
+
+/* SKILL */
+/* ----- */
+
+html,
+body {
+  height: 100%
+}
+
+section {
+  background: #181818;
+  border: 1px solid #181818;
+  padding-top:1%;
+  color: black;
+}
+
+
+.chartjs {
+	/* background-color: white; */
+}
+
+</style>
+
+<!-- cards page -->
+<div class="card-container">
+
+<script>
+// plot skills radar dynamically (helps for loop)
+function plotSkillsRadar(canvasId, labelsList, interestDataList, skillDataList)
+{
+var ctx = document.getElementById(canvasId);
+
+var data = {
+    labels: labelsList,
+    datasets: [
+        {
+            label: "Interest",
+            backgroundColor: "rgba(43,176,212,.4)", //blue
+            borderColor: "rgba(43,176,212,.6)",
+            pointBackgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor: "rgba(0,0,0,0)",
+            data: interestDataList //[100, 70, 85, 90, 95, 75, 90, 100]
+        },
+        {
+            label: "Relative Skill", // green
+            backgroundColor: "rgba(140,200,50,.4)",
+            borderColor: "rgba(140,200,50,.6)",
+            pointBackgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor: "rgba(0,0,0,0)",
+            data: skillDataList //[85, 75, 70, 80, 85, 60, 75, 50]
+        }
+    ]
+};
+
+
+var options = {
+	legend: {
+            labels: {
+                fontColor: "{{"rgba(255,255,255,.3)"}}",//"rgba(0,0,0,.8)",
+            }
+        },
+	scale: { 
+		angleLines: { color: 'rgba(0,0,0,1)' },
+		gridLines: { color: 'rgba(0,0,0,.3)' },
+		pointLabels: {fontColor: 'rgba(255,255,255,,.7)'},
+		ticks : {backdropColor: 'rgba(0,0,0,0)', fontColor: 'rgba(255,255,255,.5)'}
+		
+	}
+}
+
+new Chart(ctx, {
+	'type':'radar',
+	'data': data, 
+	options: options
+});
+
+} // end function plotSkillsRadar
+
+</script>
+
+	
+{% for member in members %}
+<section class="card-wrapper">
+	<div class="card">
+		<div class="container">
+			
+			<div class="row">
+				<div class="six columns">
+					
+					<h4 style="color: rgba(255,255,255,.8)">{{member.full_name}}</h4>
+					
+						<div class="city">
+							{{ member.cur_city }}
+						</div>
+					
+					<div class="row" >
+							<div class="twelve columns">
+								<span class="communities">
+									{% set comms = member.communities.split(',') %}
+									{% for com in comms %}
+									  <code>{{ com }} </code> &nbsp; 
+									{% endfor %}
+								</span>
+							</div>
+					</div>
+					
+					<div class="row">
+						<div class="twelve columns bio">
+							❝ {{ member.bio }}
+							<br/> <br/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="six columns u-full-width social">
+							<i class="fa fa-twitter icon-style"></i> &nbsp;
+							<i class="fa fa-linkedin icon-style"></i> &nbsp;
+							<i class="fa fa-github icon-style"></i> &nbsp;
+							<i class="fa fa-whatsapp icon-style"></i> &nbsp;
+							<i class="fa fa-envelope icon-style"></i> &nbsp;
+						</div>
+					</div>
+				</div>
+				<!-- right half -->
+				<div class="six columns skills">
+					
+					<!-- Skills chart here -->
+					<canvas id="{{member.id}}" class="chartjs" width="165" height="115" ></canvas>
+					
+				</div>
+			</div>
+			
+
+			
+		</div>
+		</div>
+</section>
+
+
+<script>
+plotSkillsRadar(
+		canvasId="{{member.id}}",
+		labelsList=["{{member.dom_1}}", "{{member.dom_2}}", "{{member.dom_3}}", "{{member.dom_4}}", "{{member.dom_5}}", "{{member.dom_6}}", "{{member.dom_7}}", "{{member.dom_8}}"],
+		InterestDataList=[{{member.dom_1interest}}, {{member.dom_2interest}}, {{member.dom_3interest}}, {{member.dom_4interest}}, {{member.dom_5interest}}, {{member.dom_6interest}},  {{member.dom_7interest}}, {{member.dom_8interest}}],
+		skillDataList=[{{member.dom_1skill}}, {{member.dom_2skill}}, {{member.dom_3skill}}, {{member.dom_4skill}}, {{member.dom_5skill}}, {{member.dom_6skill}}, {{member.dom_7skill}}, {{member.dom_8skill}}]
+);
+</script>
+{% endfor %}
+
+
+
+</div>
 {% endblock %}

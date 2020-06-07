@@ -3,9 +3,20 @@
 {% block content %}
 
 <style>
-	label {
-		font-size:11px;
-	}
+.notice-yellow {
+	font-size: 56%; 
+	font-weight: 500;
+	margin-bottom: 7%;
+	color: rgba(250,250,250,.8);
+	/*background-color:#ffb952; 
+	border: 1px solid #ffb952;*/ 
+	border-radius: 3px;
+}
+
+::-webkit-resizer {
+	display: none;
+	background: rgba(200,200,200,.8);
+}
 </style>
 
 <!-- forms [ADD ENTRY] -->
@@ -17,7 +28,7 @@
 	</h4>
 	
 	<p>
-		This release in alpha version. Form validation is not yet added so please enter values carefully.
+		This release is in alpha version. Form validation is not added yet please enter values carefully.
 	</p>
 		
 	<!-- PERSONAL -->
@@ -36,102 +47,293 @@
       <select class="u-full-width" id="curStatus">
         <option value="Working">Working</option>
         <option value="Student">Student</option>
+        <option value="Other">Other</option>
       </select>
       
       <label>Location</label>
       <select class="u-full-width" id="curLoc">
-        <option value="Chennai">Chennai</option>
-        <option value="Bangalore">Bangalore</option>
       </select>
     </div>
   </div>
   
   <div class="row">
-  <div class="twelve columns">
-  <label>Bio</label>
-  <textarea class="u-full-width" placeholder="Drag lower left corner to expand text box... tell about yourself" id="bio"></textarea>
+  	<div class="twelve columns">
+  		<label>Bio</label>
+  		<textarea class="u-full-width" style="height: 170px" placeholder="Drag lower right corner to expand text box... tell more about yourself" id="mybio"></textarea>
+  		</div>
   </div>
-  </div>
-  
-  
-  <!-- SKILLS -->
-  <h5>Skills</h5>
   
   <div class="row">
-  <div class="twelve columns">
-  <label>Programming Languages</label>
-  <select class="u-full-width" id="progLangs" multiple>
+  	<div class="twelve columns">
+  		  <label>Dev Communities</label>
+  		  <select class="u-full-width" id="mycommunities" multiple>
+  		  </select>
+  	</div>
+  </div>
+  
+  <!-- div class="row">
+  	<div class="twelve columns">
+  		<label>Community Behaviour</label>
+  		<div class="notice-yellow" style="margin-bottom: 2%">
+  			How would you respond to your community memebers?
+  		</div>
+  		<select class="u-full-width">
+  			<option value="middle">Don't want to mention</option>
+  			<option value="closed">
+  				Like Linus Torvalds I believe respect must be earned not given.
+  				If someone in community is unreasonable or harsh, I will treat them accordingly
+  			</option>
+  			<option value="open">
+  				I believe no matter how unreasonable or harsh the other preson is, respect must
+  				be given because it tells a lot about me than about the other person.
+  			</option>
+  		</select>
+  	</div>
+  </div -->
+
+
+  <h5 style="padding-top: 8%; padding-bottom: 4%">Interests In Domains and Your Actual Skills In It</h5>
+ 
+<div id="SKILLS">
+  <div class="row"> 
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Data Science" id="mydom1"> </select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel1').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel1" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel1').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel1" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. DSA" id="mydom2"></select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel2').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel2" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel2').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel2" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Big Data" id="mydom3"></select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel3').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel3" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel3').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel3" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Full Stack" id="mydom4"></select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel4').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel4" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel4').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel4" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. UI/UX" id="mydom5"> </select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel5').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel5" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel5').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel5" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Android or iOS or Cross Platform" id="mydom6"> </select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel6').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel6" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel6').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel6" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. C++ or Python or Javascript" id="mydom7"></select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel7').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel7" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel7').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel7" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+  
+  <div class="row">
+  	<div class="four columns">
+  		<select class="u-full-width" type="text" placeholder="eg. Marketing" id="mydom8"> </select>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Interest</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('interestLabel8').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="interestLabel8" style="font-style: Monospace;">0</em>
+  	</div>
+  	<div class="four columns">
+    <div class="notice-yellow" style="margin-bottom: 0%">Relative Skill</div>
+    <input style="width: 85%; inline-block;vertical-align: left;" type ="range" max="99" min="1"
+        oninput="document.getElementById('skillLabel8').innerHTML = this.value;"
+        step="1" name="rangeVal" id="rangeVal" value="1">
+    </input>
+    <em id="skillLabel8" style="font-style: Monospace;">0</em>
+  	</div>
+  </div>
+</div>
+<script>
+	// add options to multiple select (LIST WILL BE USED FOR UPATING TOO)
+	var fullCommunitiesList = `
+	  		  <option value="None">None</option>
+  		  	<option value="Tag 1">Community 1</option>
+  		  	<option value="Tag 2">Community 2</option>
+  		  	<option value="Tag 3">Community 3</option>
+  		  	<option value="Tag 4">Community 4</option>
+	`;
+	document.getElementById("mycommunities").innerHTML = fullCommunitiesList;
+	
+	var citiesList = `
+	        <option value="None">None</option>
+	        <option value="Chennai">Chennai</option>
+	        <option value="Banglore">Bangalore</option>
+	        <option value"Hyderabad">Hyderabad</option>
+	        <option value="Mumbai">Mumbai</option>
+	        <option value="Pune">Pune</option>
+	`;
+	document.getElementById("curLoc").innerHTML = citiesList
+	
+	var optionsDomains = `
+	    <option value="0">None</option>
+	    <option value="DSA">Datastructures & Algorithms</option>
+	    <option value="UI/UX">UI/UX</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+      <option value="Full Stack">Full Stack</option>
+      <option value="Data Science">Data Science</option>
+      <option value="MLDL">Machine Learning / Deep Learning</option>
+      <option value="Computer Vison">Computer Vision</option>
+      <option value="NLP">NLP</option>
+      <option value="Big Data">Big Data</option>
+      <option value="DevOps">DevOps</option>
+      <option value="Cloud">Cloud</option>
+      <option value="Android">Android</option>
+      <option value="iOS">iOS</option>
+      <option value="Cross Platform">Cross Platform</option>
+      <option value="Embedded">Embedded</option>
+      <option value="UAVs">Drones/UAVs</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Team Lead">Team Lead</option>
+      <option value="Public Speaking">Public Speaking</option>
+      <option value="Writing">Content Writing</option>
+      <option value="Product Demo">Product Demo</option>
+      <option value="Adv Mathethematics">Advanced Mathethematics</option>
+      <option value="C">C</option>
+      <option value="C++">C++</option>
       <option value="Python">Python</option>
       <option value="Javascript">Javascript</option>
-      <option value="Java">Java</option>
-      <option value="C++">C++</option>
-      <option value="C">C</option>
       <option value="Swift">Swift</option>
-  </select>
-  
-  <label>Advanced Level of Proficiency</label>
-  <select class="u-full-width" id="advSkills" multiple>
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-  </select>
-  
-  <label>Intermediate Level of Proficiency</label>
-  <select class="u-full-width" id="medSkills" multiple>
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-  </select>
-  
-  <label>Beginner</label>
-  <select class="u-full-width" id="begSkills" multiple>
-      <option value="Frontend">Frontend</option>
-      <option value="Backend">Backend</option>
-      <option value="Full Stack">Full Stack</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLDL">Machine Learning / Deep Learning</option>
-      <option value="Big Data">Big Data</option>
-      <option value="DevOps">DevOps</option>
-      <option value="Cloud">Cloud</option>
-      <option value="Android">Android</option>
-      <option value="iOS">iOS</option>
-      <option value="Cross Platform">Cross Platform</option>
-      <option value="Embedded">Embedded</option>
-      <option value="Cybersecurity">Cybersecurity</option>
-  </select>
-  
-  <label>Tools or Frameworks of choice</label>
-  <input class="u-full-width" type="text" id="fvtTools" placeholder="REACT, MERN, GraphQL, Tensorflow, PySpark, Hadoop, Docker, Jenkins, Heroku, Wireshark, Metasploit ...">
-  
-  <label>Dev Communities you are part of</label>
-  <select class="u-full-width" id="communities" multiple>
-  	<option value="ChennaiJS">ChennaiJS</option>
-  	<option value="TFJS">TFJS Dev</option>
-  	<option value="Dev Army">Dev Army</option>
-  </select>
-  
-  </div>
-  </div>
+      <option value="Ruby">Ruby</option>
+      <option value="Java">Java</option>
+	`;
+	
+	for (let i=1; i<9; i++ ){
+		var dom = "mydom" + i.toString();
+		document.getElementById(dom).innerHTML = optionsDomains;
+	}
+	document.getElementById("mydom1").innerHTML = optionsDomains;
+	
+</script>
   
   <!-- SOCIAL -->
   <h5>Social</h5>
@@ -155,8 +357,11 @@
   	</div>
   	
   	<div class="eight columns">
-  		<label>Email (will be needed to permanently remove your entry)</label>
-      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="email">
+  		<label>Email</label>
+  		<div class="notice-yellow"style="margin-bottom: 0%; color:#ffb952;" >
+  			Please remember entered email. Will be used later.
+  		</div>
+      <input class="u-full-width" type="email" placeholder="johndoe@doemail.com" id="myemail">
   	</div>
 
   </div>
@@ -166,18 +371,16 @@
   
   <div class="row">
   <div class="twelve columns">
-  <label>Create your secret key (will be needed to permanently remove your entry)</label>
+  <label>Create your secret key</label>
+  <div class="notice-yellow"style="margin-bottom: 0%; color:#ffb952" >
+  			Please remember entered key. Will be used later.
+  </div>
   <input class="u-full-width" type="text" placeholder="secret key (strong and easy to remeber)" id="secretKey">
   </div>
   </div>
   
   <input type="button" onclick="getDataAndPOST()" value="submit">
-  
-  <!--
- <div id="console">
- </div>
- -->
- 
+  <div id="consoleee"></div>
 </div>
 
 
@@ -185,110 +388,145 @@
 <script>
 	// post for add FORM
 	// -----------------
-	// document.getElementById("console").innerHTML = "my console"
 	function getDataAndPOST() {
+		
 		var fullName = document.getElementById("fullName").value
 		var nickName = document.getElementById("nickName").value
 		var curLoc   = document.getElementById("curLoc").value
 		var curStatus= document.getElementById("curStatus").value
-		var bio      = document.getElementById("bio").value
-		
-		var progLangsList = []
-		var multiSelect   = document.getElementById("progLangs")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			progLangsList.push(multiSelect.selectedOptions[i].value)
-		}
-		
-		var advSkillsList = []
-		var multiSelect   = document.getElementById("advSkills")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			advSkillsList.push(multiSelect.selectedOptions[i].value)
-		}
-		
-		var medSkillsList = []
-		var multiSelect   = document.getElementById("medSkills")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			medSkillsList.push(multiSelect.selectedOptions[i].value)
-		}
-		
-		var begSkillsList = []
-		var multiSelect   = document.getElementById("begSkills")
-		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
-			begSkillsList.push(multiSelect.selectedOptions[i].value)
-		}
+		var bio      = document.getElementById("mybio").value
 		
 		var communitiesList = []
-		var multiSelect   = document.getElementById("communities")
+		var multiSelect   = document.getElementById("mycommunities")
 		for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
 			communitiesList.push(multiSelect.selectedOptions[i].value)
 		}
-		
-		var fvtTools   = document.getElementById("fvtTools").value.replace(/\s/g, "").toLowerCase()
 		
 		var linkedinUrl= document.getElementById("linkedinUrl").value
 		var whatsappNum= document.getElementById("whatsappNum").value
 		var twitterUrl = document.getElementById("twitterUrl").value
 		var githubUrl  = document.getElementById("githubUrl").value
-		var email      = document.getElementById("email").value
+		var email      = document.getElementById("myemail").value
 		var secretKey  = document.getElementById("secretKey").value
 		
+		var mydom1         = document.getElementById("mydom1").value
+		var mydom1Skill    = document.getElementById("skillLabel1").innerHTML
+		var mydom1Interest = document.getElementById("interestLabel1").innerHTML
+		var mydom2         = document.getElementById("mydom2").value
+		var mydom2Skill    = document.getElementById("skillLabel2").innerHTML
+		var mydom2Interest = document.getElementById("interestLabel2").innerHTML
+		var mydom3         = document.getElementById("mydom3").value
+		var mydom3Skill    = document.getElementById("skillLabel3").innerHTML
+		var mydom3Interest = document.getElementById("interestLabel3").innerHTML
+		var mydom4         = document.getElementById("mydom4").value
+		var mydom4Skill    = document.getElementById("skillLabel4").innerHTML
+		var mydom4Interest = document.getElementById("interestLabel4").innerHTML
+		var mydom5         = document.getElementById("mydom5").value
+		var mydom5Skill    = document.getElementById("skillLabel5").innerHTML
+		var mydom5Interest = document.getElementById("interestLabel5").innerHTML
+		var mydom6         = document.getElementById("mydom6").value
+		
+		
+		var mydom6Skill    = document.getElementById("skillLabel6").innerHTML
+		var mydom6Interest = document.getElementById("interestLabel6").innerHTML
+		var mydom7         = document.getElementById("mydom7").value
+		var mydom7Skill    = document.getElementById("skillLabel7").innerHTML
+		var mydom7Interest = document.getElementById("interestLabel7").innerHTML
+		var mydom8         = document.getElementById("mydom8").value
+		var mydom8Skill    = document.getElementById("skillLabel8").innerHTML
+		var mydom8Interest = document.getElementById("interestLabel8").innerHTML
 		/*
-		document.getElementById("console").innerHTML = `
-			fullName    : ${fullName} ${typeof fullName === 'string'} <br />
-			nickName    : ${nickName} <br />
-			curLoc      : ${curLoc}   <br />
-			curStatus   : ${curStatus} <br />
-			bio         : ${bio}  <br />
-			progLangsList : ${progLangsList}  ${typeof progLangsList.toString() === 'string'} <br />
-			advSkillsList : ${advSkillsList}  <br />
-			medSkillsList : ${medSkillsList}  <br />
-			begSkillsList : ${begSkillsList}<br />
-			communitiesList :${communitiesList} <br/>
-			fvtTools      : ${fvtTools}  <br />
-			linkedinUrl   : ${linkedinUrl} <br/>
-			whatsappNum   : ${whatsappNum} <br/>
-			twitterUrl    : ${twitterUrl} <br/>
-			githubUrl     : ${githubUrl} <br/>
-			email         : ${email} <br/>
-			secretKey     : ${secretKey} <br />
-		`;
-		*/
-
+		document.getElementById('consoleee').innerHTML=`
+	  	full_name       : ${fullName}, <br/>
+	  	nick_name       : ${nickName}, <br/>
+	  	cur_city        : ${curLoc}, <br/>
+	  	cur_status      : ${curStatus}, <br/>
+	  	bio             : ${bio}, <br/>
+	  	communities     : ${communitiesList.toString()}, <br/>
+	  	linkedin_url    : ${linkedinUrl}, <br/>
+	  	whatsapp_num    : ${whatsappNum}, <br/>
+	  	twitter_url     : ${twitterUrl}, <br/>
+	  	github_url      : ${githubUrl}, <br/>
+	  	email           : ${email}, <br/>
+	  	secret_key      : ${secretKey}, <br/>
+	  	dom_1           : ${mydom1}, <br/>
+	  	dom_2           : ${mydom2}, <br/>
+	  	dom_3           : ${mydom3}, <br/>
+	  	dom_4           : ${mydom4}, <br/>
+	  	dom_5           : ${mydom5}, <br/>
+	  	dom_6           : ${mydom6}, <br/>
+	  	dom_7           : ${mydom7}, <br/>
+	    dom_8           : ${mydom8}, <br/>
+	    dom_1skill     : ${mydom1Skill}, <br/>
+	    dom_1interest  : ${mydom1Interest}, <br/>
+	    dom_2skill     : ${mydom2Skill}, <br/>
+	    dom_2interest  : ${mydom2Interest}, <br/>
+	    dom_3skill     : ${mydom3Skill}, <br/>
+	    dom_3interest  : ${mydom3Interest}, <br/>
+	    dom_4skill     : ${mydom4Skill}, <br/>
+	    dom_4interest  : ${mydom4Interest}, <br/>
+	    dom_5skill     : ${mydom5Skill}, <br/>
+	    dom_5interest  : ${mydom5Interest}, <br/>
+	    dom_6skill     : ${mydom6Skill}, <br/>
+	    dom_6interest  : ${mydom6Interest}, <br/>
+	    dom_7skill     : ${mydom7Skill}, <br/>
+	    dom_7interest  : ${mydom7Interest}, <br/>
+	    dom_8skill     : ${mydom8Skill}, <br/>
+	    dom_8interest  : ${mydom8Interest} <br />
+		`;*/
+		
 	  //post
 	  axios.post('/api/member', {
-	  	full_name       : fullName,
-	  	nick_name       : nickName,
-	  	cur_city        : curLoc,
-	  	cur_status      : curStatus,
-	  	bio             : bio,
-	  	prog_langs      : progLangsList.toString(),
-	  	adv_skills      : advSkillsList.toString(),
-	  	med_skills      : medSkillsList.toString(),
-	  	beg_skills      : begSkillsList.toString(),
-	  	communities     : communitiesList.toString(),
-	  	fvt_tools       : fvtTools,
-	  	linkedin_url    : linkedinUrl,
-	  	whatsapp_num    : whatsappNum,
-	  	twitter_url     : twitterUrl,
-	  	github_url      : githubUrl,
+	  	full_name       :  fullName,
+	  	nick_name       :  nickName,
+	  	cur_city        :  curLoc,
+	  	cur_status      :  curStatus,
+	  	bio             :  bio,
+	  	communities     :  communitiesList.toString(),
+	  	linkedin_url    :  linkedinUrl,
+	  	whatsapp_num    :  whatsappNum,
+	  	twitter_url     :  twitterUrl,
+	  	github_url      :  githubUrl,
 	  	email           : email,
-	  	secret_key      : secretKey
+	  	secret_key      :  secretKey,
+	  	dom_1           :  mydom1,
+	  	dom_2           :  mydom2,
+	  	dom_3           :  mydom3,
+	  	dom_4           :  mydom4,
+	  	dom_5           :  mydom5,
+	  	dom_6           :  mydom6,
+	  	dom_7           :  mydom7,
+	    dom_8           :  mydom8,
+	    dom_1skill     :  mydom1Skill,
+	    dom_1interest  :  mydom1Interest,
+	    dom_2skill     :  mydom2Skill,
+	    dom_2interest  :  mydom2Interest,
+	    dom_3skill     :  mydom3Skill,
+	    dom_3interest  :  mydom3Interest,
+	    dom_4skill     :  mydom4Skill,
+	    dom_4interest  :  mydom4Interest,
+	    dom_5skill     :  mydom5Skill,
+	    dom_5interest  :   mydom5Interest,
+	    dom_6skill     :  mydom6Skill,
+	    dom_6interest  :  mydom6Interest,
+	    dom_7skill     :  mydom7Skill,
+	    dom_7interest  :  mydom7Interest,
+	    dom_8skill     :  mydom8Skill,
+	    dom_8interest  : mydom8Interest
 	  }
 	  ).then(function(response){
-	  	//console.log(response)
-	  })
+	  	//window.location.href="/"
+	  });
 	}
 
 </script>
-
-
 
 
 <!-- DELETE FORM -->
 <!---------------------------------------------->
 <div id="remove-form" style="display: none; text-align: center; margin-top: 25px">
 	<h4>
-		Permanently remove details from <b>Filter</b>
+		Permanently Remove Details From <b>Filter</b>
 	</h4>
 	
 		<label>Email</label>
@@ -297,32 +535,307 @@
 		<input type="text" id="authSecretKey">
 		<br />
 		<input type="button" onclick="getDataAndDELETE()" value="Remove">
-		<input type="button" value="Update">
 </div>
 
 <script>
 	// DELETE Request
 	function getDataAndDELETE() {
-		var email = document.getElementById("authEmail").value
-		var secretKey = document.getElementById("authSecretKey").value
+		var email1 = document.getElementById("authEmail").value
+		var secretKey1 = document.getElementById("authSecretKey").value
 		
 		axios.delete("/api/member", {
 			data: {
-				secret_key: secretKey,
-				email     : email
+				secret_key: secretKey1,
+				email     : email1
 			}
+		}).then(response => {
+			window.location.href="/";
 		})
 	}
 </script>
 
 
+
 <!-- Update FORM -->
 <!------------------>
-<div id="update-form" style="display: none; text-align: center; margin-top: 25px">
+<div id="update-form" style="display: none; text-align: center; margin-top: 25px; margin-left: auto; margin-right: auto; width: 70%">
 	<h4>
-		Update your details
+		Update Your Details
 	</h4>
+	
+		<label>Email (required)</label>
+		<input type="email" id="authEmail2">
+		
+		<label>Secret Key (required)</label>
+		<input type="text" id="authSecretKey2">
+		
+		<br />
+		<label id="ftuLabel">Fields to update</label>
+		<select id="ftuOptions" class="u-full-width" multiple id="fieldsToUpdate">
+			<option value="full_name">Full Name</option>
+			<option value="nick_name">Preferred Name</option>
+			<option value="cur_status">Working/Student/Other</option>
+			<option value="cur_city">Curent City</option>
+			<option value="bio">Bio</option>
+			<option value="twitter_url">Twitter URL</option>
+			<option value="linkedin_url">LinkedIn URL</option>
+			<option value="whatsapp_num">WhatsApp Number</option>
+			<option value="github_url">GitHub URL</option>
+			<option value="email">Email</option>
+			<option value="secret_key">Secret Key</option>
+			
+			
+			<option value="communities">Communities</option>
+			
+			
+			<option value="skills">Skills</option>
+			
+		</select>
+		
+		<div id="fields-add">
+			
+		</div>
+		
+		<input id="startUpdating" type="button" onclick="removeAndAdd()" value="Start Updating">
+
+    <div id="consolee"></div>
 </div>
+
+
+<script>
+
+// global
+var ftuList = []
+var textFields = [
+	"full_name", "nick_name", "bio", "twitter_url", "linkedin_url", "github_url", 
+	"whatsapp_num", "email", "secret_key"]
+var optFields = ["cur_status", "cur_city", "communities"]
+var singleOptFields = ["cur_status", "cur_city"]
+
+function removeAndAdd() {
+
+	// add:
+  // get list of fields to Update
+  var multiSelect   = document.getElementById("ftuOptions")
+  for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+		ftuList.push(multiSelect.selectedOptions[i].value)
+	}
+	
+	// add id and input / multiselect fields
+	// depending on `field` type
+	/*
+	// made global
+	var strFields = ["full_name", "nick_name", "bio", "twitter_url", "linkedin_url", "github_url", "whatsapp_num", "email", "fvt_tools", "secret_key"]
+  var optionFields = ["cur_status", "cur_city", "communities", "prog_langs", "adv_skills", "med_skills", "beg_skills"]
+	var singleOptFields = ["cur_status", "cur_city"]
+	*/
+	for (let i=0; i<ftuList.length; i++) {
+		
+		field_name = ftuList[i]
+		var fieldsAdd = document.getElementById("fields-add")
+		
+		// str fields with onky <id> and <input>
+		if (textFields.includes(field_name)) {
+			
+			var newLabel = document.createElement('label')
+			newLabel.innerHTML = "UPDATE " + field_name.replace("_", " ").toUpperCase()
+			fieldsAdd.appendChild(newLabel)
+			
+			var newInput = document.createElement('input')
+			newInput.type = "text"
+			newInput.id = field_name
+			newInput.classList.add('u-full-width')
+			fieldsAdd.appendChild(newInput)
+			
+			
+		} else if (optFields.includes(field_name)) {
+			
+			var newLabel = document.createElement('label')
+			newLabel.innerHTML = "UPDATE " + field_name.replace("_", " ").toUpperCase()
+			fieldsAdd.appendChild(newLabel)
+			  
+			// add multiple/single options
+			var newSelect = document.createElement("select")
+			newSelect.id = field_name
+			newSelect.classList.add('u-full-width')
+			// DETRMINE SINGLE OR MULTIPLE IN LOOP
+			if (!singleOptFields.includes(field_name)) {
+				newSelect.multiple = true
+			}
+			
+			if (field_name === "cur_status"){
+				newSelect.innerHTML = `
+        <option value="Working">Working</option>
+        <option value="Student">Student</option>
+        <option value="Other">Other</option>
+        `
+			} else if (field_name == "cur_city") {
+				newSelect.innerHTML = citiesList
+			} else if (field_name === "communities") {
+				newSelect.innerHTML = fullCommunitiesList
+			}
+			fieldsAdd.appendChild(newSelect)
+		}
+	}
+	
+	// skills
+	if (ftuList.includes("skills")) {
+		// copy div and (remove after use? Doesnt matter. both point to same)
+		var SKILLS = document.getElementById('SKILLS')
+		var fieldsAdd = document.getElementById('fields-add')
+		/*
+		clone = SKILLS.cloneNode(true); // interestLabels and skillLabels not working
+		clone.id = "update-skills";
+		fieldsAdd.appendChild(clone)
+		*/
+		fieldsAdd.appendChild(SKILLS)
+	}
+
+	// remove: fieldsToUpdate label and options
+	document.getElementById("ftuLabel").outerHTML = "";
+	document.getElementById("ftuOptions").outerHTML = "";
+	document.getElementById("startUpdating").outerHTML = ""
+	var updateButton = document.createElement("input")
+	updateButton.type="button"
+	updateButton.onclick = getDataAndPATCH
+	updateButton.value = "update"
+	fieldsAdd.appendChild(updateButton)
+}
+
+// get data and PATCH Request
+function getDataAndPATCH() {
+			
+	// define `secret_key` `email`
+	var secret_key = document.getElementById("authSecretKey2").value
+	var email      = document.getElementById("authEmail2").value
+	
+	// access ftuList from global
+	for(let i=0; i<ftuList.length; i++) {
+		
+		field_name = ftuList[i]
+		
+		if (field_name === "skills") {
+			continue
+		}
+		
+		// define `key`, `value` for PATCH Request.
+		// we will take advantages of `id` names for newly created
+		// input fields above which match with `field_name`
+		var key   = field_name
+		// value - for multiple select options, use loop
+		var val = ""
+		if (textFields.includes(field_name) || singleOptFields.includes(field_name)) {
+			val = document.getElementById(field_name).value
+		} else {
+			// use loop to get the items and convert them to str.
+			// assign it to val
+			var valList = []
+			var multiSelect = document.getElementById(field_name)
+			for (let i=0; i<multiSelect.selectedOptions.length; i++ ) {
+				valList.push(multiSelect.selectedOptions[i].value)
+				
+			}
+			val = valList.toString()
+		}
+		
+		
+		
+		// PATCH
+		axios
+			.patch('/api/member', {
+				secret_key : secret_key,
+				email      : email,
+				key        : key,
+				val        : val,
+			})
+			.then(function(redponse){
+				window.location.href = "/";
+			});
+			
+			
+	}
+
+
+	// patch for SKILLS
+	if (ftuList.includes("skills")){
+		
+	  var mydom1         = document.getElementById("mydom1").value
+	  var mydom1Skill    = document.getElementById("skillLabel1").innerHTML
+		var mydom1Interest = document.getElementById("interestLabel1").innerHTML
+		var mydom2         = document.getElementById("mydom2").value
+		var mydom2Skill    = document.getElementById("skillLabel2").innerHTML
+		var mydom2Interest = document.getElementById("interestLabel2").innerHTML
+		var mydom3         = document.getElementById("mydom3").value
+		var mydom3Skill    = document.getElementById("skillLabel3").innerHTML
+		var mydom3Interest = document.getElementById("interestLabel3").innerHTML
+		var mydom4         = document.getElementById("mydom4").value
+		var mydom4Skill    = document.getElementById("skillLabel4").innerHTML
+		var mydom4Interest = document.getElementById("interestLabel4").innerHTML
+		var mydom5         = document.getElementById("mydom5").value
+		var mydom5Skill    = document.getElementById("skillLabel5").innerHTML
+		var mydom5Interest = document.getElementById("interestLabel5").innerHTML
+		var mydom6         = document.getElementById("mydom6").value
+		var mydom6Skill    = document.getElementById("skillLabel6").innerHTML
+		var mydom6Interest = document.getElementById("interestLabel6").innerHTML
+		var mydom7         = document.getElementById("mydom7").value
+		var mydom7Skill    = document.getElementById("skillLabel7").innerHTML
+		var mydom7Interest = document.getElementById("interestLabel7").innerHTML
+		var mydom8         = document.getElementById("mydom8").value
+		var mydom8Skill    = document.getElementById("skillLabel8").innerHTML
+		var mydom8Interest = document.getElementById("interestLabel8").innerHTML
+	
+			
+		var dict = {
+	 "dom_1"          :mydom1,
+	 "dom_2"         : mydom2,
+	 "dom_3"          : mydom3,
+	 "dom_4"          : mydom4,
+	 "dom_5"          : mydom5,
+	 "dom_6"          : mydom6,
+	 "dom_7"          : mydom7,
+	 "dom_8"          : mydom8,
+	 "dom_1skill"     : mydom1Skill,
+	 "dom_1interest"  : mydom1Interest,
+	 "dom_2skill"     : mydom2Skill,
+	 "dom_2interest"  : mydom2Interest,
+	 "dom_3skill"     : mydom3Skill,
+	 "dom_3interest"  : mydom3Interest,
+	 "dom_4skill"     : mydom4Skill,
+	 "dom_4interest"  : mydom4Interest,
+	 "dom_5skill"     : mydom5Skill,
+	 "dom_5interest"  : mydom5Interest,
+	 "dom_6skill"     : mydom6Skill,
+	 "dom_6interest"  : mydom6Interest,
+	 "dom_7skill"     : mydom7Skill,
+	 "dom_7interest"  : mydom7Interest,
+	 "dom_8skill"     : mydom8Skill,
+	 "dom_8interest"  : mydom8Interest}
+	 
+	 var disptext = ``
+	 for (var k in dict){
+	 	v = dict[k]
+	 	disptext = disptext + `<br/> ${k} ${typeof k} ${v} ${typeof v}`
+	 }
+
+	 for(var KEY in dict) {
+
+
+
+	 	var VAL = dict[KEY];
+			axios.patch('/api/member', {
+				secret_key : secret_key,
+				email      : email,
+				key        : KEY,
+				val        : VAL
+			})
+			.then(function(redponse){
+				window.location.href = "/";
+			});
+	 }
+  } // end func
+
+}
+</script>
 
 
 

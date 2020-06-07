@@ -16,8 +16,136 @@
   <!-- rest api -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   
+  <!-- fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
   <!-- dashboard vis -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+  
+<!-- skeleton ui tweak -->
+<style>
+body {
+    color: #d3d7cf;
+    background: black;
+}
+
+/* Links */
+
+a {
+    color: #d3d7cf;
+}
+a:hover {
+    color: #d3d7cf;
+}
+
+/* Buttons */
+
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    color: #d3d7cf;
+    border: 1px solid #babdb6;
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+    color: #eeeeec;
+    border: 1px solid #eeeeec;
+}
+
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+    color: #2e3436;
+    background-color: #fcaf3e;
+    border-color: #fcaf3e;
+}
+
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+    color: #2e3436;
+    background-color: #ffb952;
+    border-color: #ffb952;
+}
+
+/* Forms */
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    background-color: #2e3436;
+    border: 1px solid #babdb6;
+}
+
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border: 1px solid #fcaf3e;
+}
+
+
+/* Code */
+
+code {
+    color:  #2e3436;
+    font-weight: 900;
+    background: #ffb952;
+    border: #ffb952;
+}
+
+/* Tables */
+
+td {
+    border-bottom: 1px solid #eeeeec;
+}
+
+/* Editing Form */
+input, select, textarea{
+    color: #D6D6D6;
+}
+textarea:focus, input:focus, select:focus {
+    color: #ff0000;
+}
+
+/* Label */
+label {
+	font-size:11px;
+}
+
+
+</style>
 </head>
 
 <body>
