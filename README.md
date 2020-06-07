@@ -21,7 +21,7 @@ Thanks for showing your support by visiting this page!
 - Install dependencies using `pip3` from `requirements.txt`
 - Go to main directory and run using command `python3 -m uvicorn main:app`
 
-**Hosted In Heroku** [link](https://vis-filter.herokuapp.com/)
+[**>>> Hosted here with Herok❤️u**](https://vis-filter.herokuapp.com/)
 
 
 ## How to contribue
