@@ -10,7 +10,7 @@
     already seeking you!
 ```
 
-**open-sourced on 7th July 2020** <br/>
+**open-sourced on 7th June 2020** <br/>
 More details about the project will be added soon.
 Thanks for showing your support by visiting this page!
 
