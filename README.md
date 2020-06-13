@@ -11,9 +11,16 @@
                                                        
 ```
 
-**open-sourced on 7th June 2020** <br/>
-More details about the project will be added soon.
-Thanks for showing your support by visiting this page!
+**Filter for communities** is an open-source application/API that let's you connect with
+people whom you are looking for. It summarizes people into concise cards that you
+can filter. Apart from Dashboard visualisation, API can be used for various tasks like community management or sending mass connection requests. Recommendation System coming soon! 
+
+## Screenshots
+
+|  |  |  |
+| --- | --- | --- |
+| ![0](static/first.jpg) | ![1](static/1.jpg) | ![2](static/2.jpg) | 
+| ![3](static/3.jpg) | ![4](static/4.jpg) | ![last](static/last.jpg) | 
 
 
 ## How to use
