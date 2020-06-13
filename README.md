@@ -13,7 +13,7 @@
 
 **Filter for communities** is an open-source application/API that let's you connect with
 people whom you are looking for. It summarizes people into concise cards that you
-can filter. Apart from Dashboard visualisation, API can be used for various tasks like community management or sending mass connection requests. Recommendation System coming soon! 
+can filter. Apart from Dashboard visualisations, API can be used for various tasks like community management or sending mass connection requests. Recommendation System coming soon! 
 
 ## Screenshots
 
